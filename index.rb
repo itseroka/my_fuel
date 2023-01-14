@@ -1,3 +1,5 @@
+system("clear")
+
 puts "Podaj stan licznika"
 
 @przed = gets.chomp.to_f
