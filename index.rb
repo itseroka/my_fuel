@@ -1,13 +1,24 @@
-puts "Podaj liczbe A"
+puts "Podaj stan licznika"
 
-@liczba = gets.chomp.to_i
+@przed = gets.chomp.to_i
 
-print "Podaleś liczbe #{@liczba} "
+puts "Podaleś liczbe #{@przed} \n" 
 
-puts "podaj liczbe B"
+puts "podaj stan licznika po"
 
-@druga = gets.chomp.to_i
+@po = gets.chomp.to_i
 
-print "Podałeś liczbe #{@druga}"
+puts "Podałeś liczbe #{@po}"
 
-print "Suma liczb A i B to #{@liczba + @druga}"
+puts "Przejechane kilometry to #{@po - @przed} \n"
+
+puts "Podaj stan paliwa przed"
+
+@start = gets.chomp.to_i
+
+puts "Podaj stan paliwa po powrocie"
+
+@koniec = gets.chomp.to_i
+
+puts "Zurzyte paliwo to #{@start - @koniec}"
+
