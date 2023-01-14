@@ -10,7 +10,9 @@ puts "podaj stan licznika po"
 
 puts "Podałeś liczbe #{@po}"
 
-puts "Przejechane kilometry to #{@po - @przed} \n"
+puts "Przejechane kilometry to #{@po - @przed}"
+
+@przejechanekilometry = @po - @przed
 
 puts "Podaj stan paliwa przed"
 
@@ -22,4 +24,6 @@ puts "Podaj stan paliwa po powrocie"
 
 puts "Zurzyte paliwo to #{@start - @koniec}"
 
-puts "Twoja norma na 100 km to #{((@start - @koniec)/(@po - @przed))*100}"
+@zuzycie = @start - @koniec
+
+puts "Twoja norma na 100 km to #{(@zuzycie/@przejechanekilometry)*100}"
