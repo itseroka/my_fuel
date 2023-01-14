@@ -2,15 +2,9 @@ puts "Podaj stan licznika"
 
 @przed = gets.chomp.to_f
 
-puts "Podaleś liczbe #{@przed} \n" 
-
-puts "podaj stan licznika po"
+puts "Podaj stan licznika po"
 
 @po = gets.chomp.to_f
-
-puts "Podałeś liczbe #{@po}"
-
-puts "Przejechane kilometry to #{@po - @przed}"
 
 @przejechanekilometry = @po - @przed
 
