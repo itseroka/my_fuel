@@ -1,6 +1,8 @@
 # kalkulator normy spalania
 # uruchom za pomocą komendy $ ruby index.rb
-
+@a = 0
+@b = 0
+@petla = ""
 # czyszczenie konsoli
 system("clear")
 
@@ -16,29 +18,25 @@ puts "Podaj stan licznika po powrocie na baze"
 
 puts "Podaj stan paliwa podczas startu"
 
-@start = gets.chomp.to_f
+@a = gets.chomp.to_f
 
-puts "Czy było tankowane? tak/nie"
+puts "czy bylo dotankowanie? tak/nie"
+until @petla == "nie"
+  puts "Podaj liczbę do dodania"
+  @b = @b + gets.chomp.to_f
+    puts "czy chcesz dodać więcej? TAK/NIE"
+  puts "twoje dotankowania to #{@b}"
+@petla = gets.chomp
+  end
 
-@tankowanie = gets.chomp
-
-if @tankowanie == "tak"
-  puts "Ile?"
-  @dotankowano = gets.chomp.to_f
-else 
-  @tankowanie == "nie"
-  @dotankowano = 0
-end
-
-puts "dotankowano #{@dotankowano}"
 
 puts "Podaj stan paliwa po powrocie"
 
+@c = gets.chomp.to_f
 
-@koniec = gets.chomp.to_f
+puts "Przejechane kilometry to #{@przejechanekilometry}"
+puts "Zurzyte paliwo to #{@a + @b - @c}"
 
-puts "Zurzyte paliwo to #{@start + @dotankowano - @koniec}"
-
-@zuzycie = @start + @dotankowano - @koniec
+@zuzycie = @a + @b - @c
 
 puts "Twoja norma na 100 km to #{(@zuzycie/@przejechanekilometry)*100}"
