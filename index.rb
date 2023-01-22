@@ -22,12 +22,14 @@ puts "Podaj stan paliwa podczas startu"
 
 puts "czy bylo dotankowanie? tak/nie"
 until @petla == "nie"
-  puts "Podaj liczbę do dodania"
-  @b = @b + gets.chomp.to_f
-    puts "czy chcesz dodać więcej? TAK/NIE"
-  puts "twoje dotankowania to #{@b}"
-@petla = gets.chomp
+  @petla = gets.chomp
+    if @petla == "tak"
+   puts "Podaj liczbę do dodania"
+   @b = @b + gets.chomp.to_f
+   puts "czy chcesz dodać więcej? TAK/NIE"
+   puts "twoje dotankowania to #{@b}"
   end
+end
 
 
 puts "Podaj stan paliwa po powrocie"
