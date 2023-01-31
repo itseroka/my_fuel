@@ -1,3 +1,5 @@
+# wyświetla zapisany raport
+
 require 'csv'
 
 puts "Podaj nazwe pliku csv do zaimportowania danych"

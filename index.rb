@@ -62,7 +62,7 @@ puts "Zurzyte paliwo to #{@a + @b - @c}"
 puts "Twoja norma na 100 km to #{@norma}"
 puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
-CSV.open("#{@pojazd}#{@data}#{@zjazd}.csv", "w") do |csv|
+CSV.open("#{@pojazd}#{@data}#{@zjazd}.csv", "w+") do |csv|
   csv << ["Pojazd", "Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Norma l/100km"]
   csv << ["#{@pojazd}", "#{@data}", "#{@zjazd}", "#{@b}", "#{@zuzycie}", "#{@norma}"]
 end
