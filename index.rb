@@ -48,7 +48,7 @@ until @petla == "nie"
     @b = @b + gets.chomp.to_f
     puts "Twoje dotankowania to #{@b}"
     puts "Czy chcesz dodać więcej? [tak/nie]"
-  end
+    end
 end
 
 puts "Podaj stan paliwa po powrocie"
