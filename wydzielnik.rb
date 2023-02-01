@@ -17,6 +17,7 @@ CSV.foreach("files/#{@file}.csv") do |row|
  puts row.inspect
  @wydzielnik = ""
  @wydzielnik = row[6].to_s
+ @obliczenie = (row[4].to_f/row[5].to_f)*100
 end
 
-puts "Wyświetl normę - #{@wydzielnik}"
+puts "Wyświetl normę - #{@wydzielnik} - #{@obliczenie}"
