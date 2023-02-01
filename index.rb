@@ -7,6 +7,9 @@ require 'csv'
 @c = 0
 @zuzycie = @a + @b - @c
 
+# czas dodawany do nazwy raportu
+t = Time.now
+
 @petla = ""
 
 # czyszczenie konsoli
@@ -62,9 +65,11 @@ puts "Zurzyte paliwo to #{@a + @b - @c}"
 puts "Twoja norma na 100 km to #{@norma}"
 puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
 
-CSV.open("files/#{@pojazd}.csv", "w+") do |csv|
-  csv << ["Pojazd", "Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Norma l/100km"]
-  csv << ["#{@pojazd}", "#{@data}", "#{@zjazd}", "#{@b}", "#{@zuzycie}", "#{@norma}"]
+@nazwa = "#{@pojazd}#{t.hour}#{t.min}#{t.sec}"
+
+CSV.open("files/#{@nazwa}.csv", "w+") do |csv|
+  csv << ["Pojazd", "Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
+  csv << ["#{@pojazd}", "#{@data}", "#{@zjazd}", "#{@b}", "#{@zuzycie}", "#{@przejechanekilometry}", "#{@norma}"]
 end
 
-puts "Zapisano raport files/#{@pojazd}.csv"
+puts "Zapisano raport files/#{@nazwa}.csv"

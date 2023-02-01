@@ -5,7 +5,8 @@
 # [2]Data powrotu
 # [3]Dotankowane paliwo
 # [4]Zużyte paliwo
-# [5]Norma l/100km
+# [5]Przejechane kilometry
+# [6]Norma l/100km
 
 require 'csv'
 
@@ -15,7 +16,7 @@ puts "Podaj nazwe pliku csv do zaimportowania danych"
 CSV.foreach("files/#{@file}.csv") do |row|
  puts row.inspect
  @wydzielnik = ""
- @wydzielnik = row[5].to_s
+ @wydzielnik = row[6].to_s
 end
 
 puts "Wyświetl normę - #{@wydzielnik}"
