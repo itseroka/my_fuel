@@ -10,19 +10,24 @@
 
 require 'csv'
 
-puts "Podaj nazwe pliku csv do przeszukania danych"
-@file = gets.chomp
-
 puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
 @szukaj = gets.chomp
 
-CSV.foreach("files/#{@file}.csv") do |row|
+Dir.glob("files/*.csv") do |file|
+  CSV.foreach(file) do |row|
     @szukane = row[0]
+    @zjazd = row[2]
+    @wydzielnik = row[6].to_s
+    @obliczenie = (row[4].to_f/row[5].to_f)*100
+  end
+
+ if @szukaj == @szukane
+  puts "Wyświetl normę z #{@zjazd} - #{@obliczenie}"
+ else
+  puts "Nie znaleziono pojazdu #{@szukaj}"
+ end
 end
 
-
 if @szukaj == @szukane
-    puts "Znaleziono pojazd #{@szukaj}"
-else
-    puts "Nie znaleziono pojazdu #{@szukaj}"
+    puts "Wyświetlono raporty pojazdu #{@szukaj}"
 end
