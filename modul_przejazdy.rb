@@ -1,6 +1,6 @@
 # własny moduł do dopracowania
 
-class Trasa
+module Trasa
     attr_accessor :numer_pojazdu, :data_wyjazdu, :data_zjazdu, :km_wyjazd, :km_powrot, :paliwo_wyjazd, :paliwo_dodatkowo, :paliwo_zjazd
         def zbierz_dane
             return "Twoje dane to: #{@numer_pojazdu}, #{@data_wyjazdu}, #{@data_zjazdu}, #{@km_wyjazd}, #{@km_powrot}, #{@paliwo_dodatkowo}, #{@paliwo_zjazd}"
