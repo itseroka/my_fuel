@@ -1,21 +1,37 @@
 # własny moduł do dopracowania
 
-class Przejazd
-    attr_accessor :pojazd, :wyjazd, :powrot, :przejechane_kilometry, :zuzyte_paliwo, :norma
-
-    def dane
-      return "Dane #{@pojazd}, #{@wyjazd}, #{@powrot}, #{@przejechane_kilometry},#{@zuzyte_paliwo}, #{@norma}"  
-    end
-
+class Trasa
+    attr_accessor :numer_pojazdu, :data_wyjazdu, :data_zjazdu, :km_wyjazd, :km_powrot, :paliwo_wyjazd, :paliwo_dodatkowo, :paliwo_zjazd
+        def zbierz_dane
+            return "Twoje dane to: #{@numer_pojazdu}, #{@data_wyjazdu}, #{@data_zjazdu}, #{@km_wyjazd}, #{@km_powrot}, #{@paliwo_dodatkowo}, #{@paliwo_zjazd}"
+        end
 end
 
-trasa = Przejazd.new
+historia_trasy = Trasa.new
 
-trasa.pojazd = "WWY21221"
-trasa.wyjazd = "10.10.2022"
-trasa.powrot = "19.10.2022"
-trasa.przejechane_kilometry = 2800
-trasa.zuzyte_paliwo = 700
-trasa.norma = (trasa.zuzyte_paliwo/trasa.przejechane_kilometry)*100
+puts "Podaj numer rejestracyjny pojazdu"
+historia_trasy.numer_pojazdu = gets.chomp
 
-puts trasa.dane
+puts "Podaj datę wyjazdu"
+historia_trasy.data_wyjazdu = gets.chomp
+
+puts "Podaj datę zjazdu"
+historia_trasy.data_zjazdu = gets.chomp
+
+puts "Podaj stan licznika podczas wyjazdu w trasę"
+historia_trasy.km_wyjazd = gets.chomp
+
+puts "Podaj stan licznika po powrocie z trasy"
+historia_trasy.km_powrot = gets.chomp
+
+puts "Podaj stan paliwa przy wyjeździe w trasę"
+historia_trasy.paliwo_wyjazd = gets.chomp
+
+puts "Podaj ilość zatankowanego paliwa w trakcie trasy"
+historia_trasy.paliwo_dodatkowo = gets.chomp
+
+puts "Podaj stan paliwa po powrocie z trasy"
+historia_trasy.paliwo_zjazd = gets.chomp
+
+
+puts historia_trasy.zbierz_dane
