@@ -27,8 +27,16 @@ historia_trasy.km_powrot = gets.chomp
 puts "Podaj stan paliwa przy wyjeździe w trasę"
 historia_trasy.paliwo_wyjazd = gets.chomp
 
-puts "Podaj ilość zatankowanego paliwa w trakcie trasy"
-historia_trasy.paliwo_dodatkowo = gets.chomp
+puts "Czy podczas wyjazdu było dotankowywane paliwo? Podaj: TAK/NIE"
+until @tankowania_w_trasie == "NIE"
+    @tankowania_w_trasie = gets.chomp
+        if @tankowania_w_trasie == "TAK"
+            puts "Podaj wartość zatankowanego paliwa"
+            historia_trasy.paliwo_dodatkowo = 0
+            historia_trasy.paliwo_dodatkowo = historia_trasy.paliwo_dodatkowo + gets.chomp.to_f
+            puts "Czy było kolejne tankowanie? Podaj: TAK/NIE"
+        end
+end
 
 puts "Podaj stan paliwa po powrocie z trasy"
 historia_trasy.paliwo_zjazd = gets.chomp
