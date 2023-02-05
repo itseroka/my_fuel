@@ -1,4 +1,4 @@
-# własny moduł do dopracowania
+# własny moduł do dopracowania - dodać do index
 
 module Trasa
     attr_accessor :numer_pojazdu, :data_wyjazdu, :data_zjazdu, :km_wyjazd, :km_powrot, :paliwo_wyjazd, :paliwo_dodatkowo, :paliwo_zjazd
