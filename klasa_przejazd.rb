@@ -1,3 +1,6 @@
+# load "klasa_przejazd.rb" - dodać w index.rb
+# rozkmiń argument przekazywany do metody
+
 class Przejazd
     def zbierz_dane
     puts "Podaj numer rejestracyjny pojazdu"
@@ -42,8 +45,8 @@ class Przejazd
     end
    
    end
+  #  przenieś do index.rb - usuń stary kod i edytuj resztę
+  #  trasa = Przejazd.new
    
-   trasa = Przejazd.new
-   
-   trasa.zbierz_dane
-   trasa.norma
+  #  trasa.zbierz_dane
+  #  trasa.norma
