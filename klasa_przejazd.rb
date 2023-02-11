@@ -1,7 +1,7 @@
 # rozkmiń argument przekazywany do metody
 
 class Przejazd
-  attr_accessor :numer_pojazdu, :data_wyjazdu, :data_zjazdu, :km_wyjazd, :km_powrot, :paliwo_wyjazd, :paliwo_dodatkowo, :paliwo_zjazd, :norma
+  attr_accessor :numer_pojazdu, :data_wyjazdu, :data_zjazdu, :km_wyjazd, :km_powrot, :paliwo_wyjazd, :paliwo_dodatkowo, :paliwo_zjazd, :zuzycie, :przejechane_kilometry, :norma
 
     def zbierz_dane
     puts "Podaj numer rejestracyjny pojazdu"
