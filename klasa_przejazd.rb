@@ -38,7 +38,7 @@ class Przejazd
    
     end
    
-    def norma
+    def norma_spalania
     @zuzycie = @paliwo_wyjazd + @paliwo_dodatkowo - @paliwo_zjazd
     @przejechane_kilometry = @km_powrot - @km_wyjazd
     @norma = (@zuzycie/@przejechane_kilometry)*100

@@ -3,7 +3,7 @@ require 'csv'
 
 trasa = Przejazd.new
 trasa.zbierz_dane
-trasa.norma
+trasa.norma_spalania
 
 puts "TWÓJ POJAZD TO: #{trasa.numer_pojazdu}"
 
