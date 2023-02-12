@@ -1,5 +1,4 @@
 # szukaj pojazdu w csv
-
 # [0]Pojazd
 # [1]Data wyjazdu
 # [2]Data powrotu
@@ -9,25 +8,30 @@
 # [6]Norma l/100km
 
 require 'csv'
+header = true
+found_data = false
 
 puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
 @szukaj = gets.chomp
 
 Dir.glob("files/*.csv") do |file|
   CSV.foreach(file) do |row|
-    @szukane = row[0]
-    @zjazd = row[2]
-    @wydzielnik = row[6].to_s
-    @obliczenie = (row[4].to_f/row[5].to_f)*100
+    if header
+      header = false
+      next
+    end
+
+    @pojazd_z_raportu = row[0]
+    @norma = row[6]
+
+    if @pojazd_z_raportu == @szukaj
+      found_data = true
+      puts "Norma pojazdu #{@szukaj} to #{@norma}"
+    end
   end
-
- if @szukaj == @szukane
-  puts "Wyświetl normę z #{@zjazd} - #{@obliczenie}"
- else
-  puts "Nie znaleziono pojazdu #{@szukaj}"
- end
+  header = true
 end
 
-if @szukaj == @szukane
-    puts "Wyświetlono raporty pojazdu #{@szukaj}"
-end
+if !found_data
+  puts "Brak pojazdu"
+  end
