@@ -1,4 +1,3 @@
-require 'securerandom'
 require 'csv'
 
 class Przejazd
@@ -46,10 +45,14 @@ class Przejazd
     end
 
     def zapisz
-      CSV.open("files/#{SecureRandom.hex}.csv", "w+") do |csv|
+      t = Time.now
+      @nazwa = "#{@numer_pojazdu}#{t.hour}#{t.min}#{t.sec}"
+
+      CSV.open("files/#{@nazwa}.csv", "w+") do |csv|
         csv << ["Pojazd", "Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
         csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
       end
+      puts "Zapisano raport files/#{@nazwa}.csv"
     end
   
    end
