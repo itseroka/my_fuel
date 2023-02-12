@@ -5,7 +5,7 @@ class Przejazd
 
     def zbierz_dane
     puts "Podaj numer rejestracyjny pojazdu"
-    @numer_pojazdu = gets.chomp
+    @numer_pojazdu = gets.chomp.upcase
    
     puts "Podaj datę wyjazdu"
     @data_wyjazdu = gets.chomp
@@ -25,7 +25,7 @@ class Przejazd
     puts "Czy podczas wyjazdu było dotankowywane paliwo? Podaj: TAK/NIE"
     @paliwo_dodatkowo = 0
      until @tankowania_w_trasie == "NIE"
-      @tankowania_w_trasie = gets.chomp
+      @tankowania_w_trasie = gets.chomp.upcase
        if @tankowania_w_trasie == "TAK"
         puts "Podaj wartość zatankowanego paliwa"
         @paliwo_dodatkowo = @paliwo_dodatkowo + gets.chomp.to_f

@@ -22,11 +22,12 @@ Dir.glob("files/*.csv") do |file|
     end
 
     @pojazd_z_raportu = row[0]
+    @data_zjazdu = row[2]
     @norma = row[6]
 
     if @pojazd_z_raportu == @szukaj
       found_data = true
-      puts "Norma pojazdu #{@szukaj} to #{@norma}"
+      puts "Norma pojazdu #{@szukaj} z dnia #{@data_zjazdu} to #{@norma}"
     end
   end
   header = true
