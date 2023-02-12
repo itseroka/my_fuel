@@ -1,4 +1,5 @@
-# rozkmiń argument przekazywany do metody
+require 'securerandom'
+require 'csv'
 
 class Przejazd
   attr_accessor :numer_pojazdu, :data_wyjazdu, :data_zjazdu, :km_wyjazd, :km_powrot, :paliwo_wyjazd, :paliwo_dodatkowo, :paliwo_zjazd, :zuzycie, :przejechane_kilometry, :norma
@@ -35,7 +36,6 @@ class Przejazd
    
     puts "Podaj stan paliwa po powrocie z trasy"
     @paliwo_zjazd = gets.chomp.to_f
-   
     end
    
     def norma_spalania
@@ -44,5 +44,12 @@ class Przejazd
     @norma = (@zuzycie/@przejechane_kilometry)*100
     puts "Twoja norma to #{@norma}"
     end
-   
+
+    def zapisz
+      CSV.open("files/#{SecureRandom.hex}.csv", "w+") do |csv|
+        csv << ["Pojazd", "Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
+        csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
+      end
+    end
+  
    end
