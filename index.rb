@@ -1,5 +1,4 @@
 # kalkulator normy spalania
-# uruchom za pomocą komendy $ ruby index.rb
 
 # czyszczenie konsoli
 system("clear")
