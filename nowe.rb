@@ -1,6 +1,7 @@
 # Znajdz w pliku czy jest pojazd
-
 require 'csv'
+
+
 
 puts "Podaj nazwe pliku csv do przeszukania danych"
 @file = gets.chomp
