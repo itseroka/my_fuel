@@ -49,7 +49,6 @@ class Przejazd
       @nazwa = "#{@numer_pojazdu}#{t.hour}#{t.min}#{t.sec}"
 
       CSV.open("files/#{@nazwa}.csv", "w+") do |csv|
-        csv << ["Pojazd", "Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
         csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
       end
       puts "Zapisano raport files/#{@nazwa}.csv"
@@ -72,7 +71,7 @@ class Przejazd
       @file = gets.chomp
       
       begin
-      CSV.foreach("files/#{@file}.csv", headers: true) do |row|
+      CSV.foreach("files/#{@file}.csv", headers: false) do |row|
         puts row
       end
   
@@ -82,7 +81,7 @@ class Przejazd
     end
   
     def pojazd_csv
-      header = true
+      header = false
       found_data = false
      
       puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
