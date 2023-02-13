@@ -8,6 +8,24 @@ puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
 
 raport = Raporty.new
 
-raport.wyswietl_liste
-raport.wyswietl_raport
-raport.pojazd_csv
+while true
+ print "Co chcesz wyświetlić? (LISTA, RAPORT, POJAZD) "
+ input = gets.chomp.upcase
+
+ if input == "LISTA"
+  raport.wyswietl_liste
+ break
+
+ elsif input == "RAPORT"
+  raport.wyswietl_liste
+  raport.wyswietl_raport
+ break
+
+ elsif input == "POJAZD"
+  raport.pojazd_csv
+ break
+
+ else
+  puts "Nieznana komenda, proszę spróbować ponownie."
+ end
+end
