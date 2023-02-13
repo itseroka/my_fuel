@@ -14,10 +14,14 @@ class Raporty
     
     @file = gets.chomp
     
+    begin
     CSV.foreach("files/#{@file}.csv", headers: true) do |row|
       puts row
     end
-    
+
+    rescue
+    puts "Brak pliku"
+    end
   end
 
   def pojazd_csv
