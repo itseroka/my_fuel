@@ -45,10 +45,8 @@ class Przejazd
     end
 
     def zapisz
-      t = Time.now
-      @nazwa = "#{@numer_pojazdu}#{t.hour}#{t.min}#{t.sec}"
 
-      CSV.open("files/#{@nazwa}.csv", "w+") do |csv|
+      CSV.open("files/#{@numer_pojazdu}.csv", "w+") do |csv|
         csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
       end
       puts "Zapisano raport files/#{@nazwa}.csv"
