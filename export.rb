@@ -44,13 +44,18 @@ class Przejazd
     puts "Twoja norma to #{@norma}"
     end
 
-    def zapisz
-
-      CSV.open("files/#{@numer_pojazdu}.csv", "w+") do |csv|
-        csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
-      end
-      puts "Zapisano raport files/#{@nazwa}.csv"
-    end
+def zapisz
+ if File.exists?("files/#{@numer_pojazdu}.csv")
+   CSV.open("files/#{@numer_pojazdu}.csv", "a+") do |csv|
+    csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
+   end
+  else
+   CSV.open("files/#{@numer_pojazdu}.csv", "w+") do |csv|
+    csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
+   end
+  end
+ puts "Zapisano raport files/#{@numer_pojazdu}.csv"
+end
   
    end
 
