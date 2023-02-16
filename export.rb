@@ -91,7 +91,7 @@ end
       raport_path = "files/#{@szukaj}.csv"
       
       if File.exist?(raport_path)
-        puts "Dane z pliku #{raport_path}:"
+        puts "Dane dla pojazdu: #{@szukaj}:"
         CSV.foreach(raport_path) do |row|
           puts "#{row[1]}, #{row[5]}"
         end
