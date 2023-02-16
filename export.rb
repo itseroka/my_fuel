@@ -70,12 +70,12 @@ end
     end
   
     def wyswietl_raport
-      puts "Podaj nazwe pliku csv do zaimportowania danych (bez rozszerzenia)"
+      puts "Podaj nazwe pliku csv aby wyświetlić dane (bez rozszerzenia)"
       
       @file = gets.chomp
       
       begin
-      CSV.foreach("files/#{@file}.csv", headers: false) do |row|
+      CSV.foreach("files/#{@file}.csv", headers: true) do |row|
         puts row
       end
   
@@ -85,34 +85,20 @@ end
     end
   
     def pojazd_csv
-      header = false
-      found_data = false
-     
-      puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
-      @szukaj = gets.chomp
-     
-      Dir.glob("files/*.csv") do |file|
-        CSV.foreach(file) do |row|
-         if header
-           header = false
-           next
-         end
-     
-         @pojazd_z_raportu = row[0]
-         @data_zjazdu = row[2]
-         @norma = row[6]
-     
-         if @pojazd_z_raportu == @szukaj
-           found_data = true
-           puts "Norma pojazdu #{@szukaj} z dnia #{@data_zjazdu} to #{@norma}"
-         end
-       end
-       header = true
-      end
-     
-      if !found_data
-       puts "Brak pojazdu"
+     puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
+     @szukaj = gets.chomp.upcase
+      
+      raport_path = "files/#{@szukaj}.csv"
+      
+      if File.exist?(raport_path)
+        puts "Dane z pliku #{raport_path}:"
+        CSV.foreach(raport_path) do |row|
+          puts "#{row[1]}, #{row[5]}"
+        end
+      else
+        puts "Plik #{raport_path} nie istnieje."
       end
      
     end
+     
   end
