@@ -45,17 +45,19 @@ class Przejazd
     end
 
 def zapisz
- if File.exists?("files/#{@numer_pojazdu}.csv")
-   CSV.open("files/#{@numer_pojazdu}.csv", "a+") do |csv|
+raport_path = "files/#{@numer_pojazdu}.csv"
+
+ if File.exists?(raport_path)
+   CSV.open(raport_path, "a+") do |csv|
     csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
    end
   else
-   CSV.open("files/#{@numer_pojazdu}.csv", "w+") do |csv|
+   CSV.open(raport_path, "w+") do |csv|
     csv << ["Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
     csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
    end
   end
- puts "Zapisano raport files/#{@numer_pojazdu}.csv"
+ puts "Zapisano raport #{raport_path}"
 end
   
    end
@@ -70,12 +72,14 @@ end
     end
   
     def wyswietl_raport
+
       puts "Podaj nazwe pliku csv aby wyświetlić dane (bez rozszerzenia)"
       
-      @file = gets.chomp
-      
+      @szukaj = gets.chomp.upcase
+      raport_path = "files/#{@szukaj}.csv"
+
       begin
-      CSV.foreach("files/#{@file}.csv", headers: true) do |row|
+      CSV.foreach(raport_path, headers: true) do |row|
         puts row
       end
   
