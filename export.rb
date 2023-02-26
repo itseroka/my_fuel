@@ -44,16 +44,21 @@ class Przejazd
     puts "Twoja norma to #{@norma}"
     end
 
-    def zapisz
-      t = Time.now
-      @nazwa = "#{@numer_pojazdu}#{t.hour}#{t.min}#{t.sec}"
+def zapisz
+raport_path = "files/#{@numer_pojazdu}.csv"
 
-      CSV.open("files/#{@nazwa}.csv", "w+") do |csv|
-        csv << ["Pojazd", "Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
-        csv << [@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
-      end
-      puts "Zapisano raport files/#{@nazwa}.csv"
-    end
+ if File.exists?(raport_path)
+   CSV.open(raport_path, "a+") do |csv|
+    csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
+   end
+  else
+   CSV.open(raport_path, "w+") do |csv|
+    csv << ["Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
+    csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
+   end
+  end
+ puts "Zapisano raport #{raport_path}"
+end
   
    end
 
@@ -67,12 +72,14 @@ class Przejazd
     end
   
     def wyswietl_raport
-      puts "Podaj nazwe pliku csv do zaimportowania danych (bez rozszerzenia)"
+
+      puts "Podaj nazwe pliku csv aby wyświetlić dane (bez rozszerzenia)"
       
-      @file = gets.chomp
-      
+      @szukaj = gets.chomp.upcase
+      raport_path = "files/#{@szukaj}.csv"
+
       begin
-      CSV.foreach("files/#{@file}.csv", headers: true) do |row|
+      CSV.foreach(raport_path, headers: true) do |row|
         puts row
       end
   
@@ -82,34 +89,20 @@ class Przejazd
     end
   
     def pojazd_csv
-      header = true
-      found_data = false
-     
-      puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
-      @szukaj = gets.chomp
-     
-      Dir.glob("files/*.csv") do |file|
-        CSV.foreach(file) do |row|
-         if header
-           header = false
-           next
-         end
-     
-         @pojazd_z_raportu = row[0]
-         @data_zjazdu = row[2]
-         @norma = row[6]
-     
-         if @pojazd_z_raportu == @szukaj
-           found_data = true
-           puts "Norma pojazdu #{@szukaj} z dnia #{@data_zjazdu} to #{@norma}"
-         end
-       end
-       header = true
-      end
-     
-      if !found_data
-       puts "Brak pojazdu"
+     puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
+     @szukaj = gets.chomp.upcase
+      
+      raport_path = "files/#{@szukaj}.csv"
+      
+      if File.exist?(raport_path)
+        puts "Dane dla pojazdu: #{@szukaj}:"
+        CSV.foreach(raport_path) do |row|
+          puts "#{row[1]}, #{row[5]}"
+        end
+      else
+        puts "Plik #{raport_path} nie istnieje."
       end
      
     end
+     
   end
