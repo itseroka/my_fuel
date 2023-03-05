@@ -29,10 +29,7 @@ while true
  break
 
  elsif input == "LICZ"
-
   cli_zbierz_dane
-#   trasa.norma_spalania
-#   trasa.zapisz
  break
 
  else
