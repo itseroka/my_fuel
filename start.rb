@@ -1,4 +1,6 @@
 require_relative "export"
+require_relative "cli.rb"
+
 
 system("clear")
 
@@ -8,6 +10,7 @@ puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
 
 raport = Raporty.new
 trasa = Przejazd.new
+cli = Cli.new
 
 while true
  puts "Wpisz polecenie aby zacząć - LICZ, LISTA, RAPORT, POJAZD"
@@ -28,7 +31,7 @@ while true
 
  elsif input == "LICZ"
 
-  trasa.zbierz_dane
+  cli.zbierz_dane
   trasa.norma_spalania
   trasa.zapisz
  break
