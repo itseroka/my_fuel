@@ -1,5 +1,5 @@
 require_relative "export"
-require_relative "cli.rb"
+require_relative 'cli.rb'
 
 
 system("clear")
@@ -9,8 +9,7 @@ puts "Witaj w kalkulatorze norm spalania, będziesz poproszony o numer rejestrac
 puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
 
 raport = Raporty.new
-trasa = Przejazd.new
-cli = Cli.new
+
 
 while true
  puts "Wpisz polecenie aby zacząć - LICZ, LISTA, RAPORT, POJAZD"
@@ -31,9 +30,9 @@ while true
 
  elsif input == "LICZ"
 
-  cli.zbierz_dane
-  trasa.norma_spalania
-  trasa.zapisz
+  cli_zbierz_dane
+#   trasa.norma_spalania
+#   trasa.zapisz
  break
 
  else

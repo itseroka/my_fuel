@@ -1,6 +1,6 @@
 require_relative "export"
 
-def zbierz_dane
+def cli_zbierz_dane
   puts "Podaj numer rejestracyjny pojazdu"
   @numer_pojazdu = gets.chomp.upcase
  
@@ -37,5 +37,3 @@ def zbierz_dane
 
   puts przejazd.norma_spalania
   end
-
-  zbierz_dane
