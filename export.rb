@@ -2,7 +2,7 @@ require 'csv'
 
 class Przejazd
 
- def initialize(numer_pojazdu, data_wyjazdu, data_zjazdu, km_wyjazd, km_powrot, paliwo_wyjazd, paliwo_dodatkowo, paliwo_zjazd, zuzycie, przejechane_kilometry)
+ def initialize(numer_pojazdu, data_wyjazdu, data_zjazdu, km_wyjazd, km_powrot, paliwo_wyjazd, paliwo_dodatkowo, paliwo_zjazd, zuzycie, przejechane_kilometry, norma)
 
   @numer_pojazdu = numer_pojazdu
   @data_wyjazdu = data_wyjazdu
@@ -14,13 +14,14 @@ class Przejazd
   @paliwo_zjazd = paliwo_zjazd
   @zuzycie = zuzycie
   @przejechane_kilometry = przejechane_kilometry
+  @norma = self.norma_spalania
  end
 
  def norma_spalania
   @zuzycie = @paliwo_wyjazd + @paliwo_dodatkowo - @paliwo_zjazd
   @przejechane_kilometry = @km_powrot - @km_wyjazd
   @norma = (@zuzycie/@przejechane_kilometry)*100
-  puts "Twoja norma to #{@norma}"
+  return @norma
  end
 
  def zapisz
@@ -33,7 +34,7 @@ class Przejazd
    else
     CSV.open(@raport_path, "w+") do |csv|
     csv << ["Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
-    csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
+    csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, self.norma_spalania]
    end
  end
  puts "Zapisano raport #{@raport_path}"
@@ -69,7 +70,7 @@ end
   puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
   @szukaj = gets.chomp.upcase
       
-  raport_path = "files/#{@szukaj}.csv"
+  @raport_path = "files/#{@szukaj}.csv"
   
   if File.exist?(@raport_path)
    puts "Dane dla pojazdu: #{@szukaj}:"
