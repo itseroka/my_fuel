@@ -2,7 +2,7 @@ require 'csv'
 
 class Przejazd
 
- def initialize(numer_pojazdu, data_wyjazdu, data_zjazdu, km_wyjazd, km_powrot, paliwo_wyjazd, paliwo_dodatkowo, paliwo_zjazd, zuzycie, przejechane_kilometry, norma, raport_path)
+ def initialize(numer_pojazdu, data_wyjazdu, data_zjazdu, km_wyjazd, km_powrot, paliwo_wyjazd, paliwo_dodatkowo, paliwo_zjazd, zuzycie, przejechane_kilometry)
 
   @numer_pojazdu = numer_pojazdu
   @data_wyjazdu = data_wyjazdu
@@ -14,8 +14,6 @@ class Przejazd
   @paliwo_zjazd = paliwo_zjazd
   @zuzycie = zuzycie
   @przejechane_kilometry = przejechane_kilometry
-  @norma = norma
-  @raport_path = raport_path
  end
 
  def norma_spalania
