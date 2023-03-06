@@ -38,5 +38,6 @@ def cli_zbierz_dane
   puts przejazd.norma_spalania
 
   przejazd.zapisz
+  puts "Zapisano raport #{@numer_pojazdu}"
   
   end

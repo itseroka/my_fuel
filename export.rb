@@ -36,8 +36,7 @@ class Przejazd
     csv << ["Data wyjazdu", "Data powrotu", "Dotankowane paliwo", "Zużyte paliwo", "Przejechane kilometry", "Norma l/100km"]
     csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, self.norma_spalania]
    end
- end
- puts "Zapisano raport #{@raport_path}"
+  end
  end
 end
 
