@@ -28,7 +28,7 @@ class Przejazd
 
    if File.exists?(@raport_path)
     CSV.open(@raport_path, "a+") do |csv|
-    csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, @norma]
+    csv << [@data_wyjazdu, @data_zjazdu, @paliwo_dodatkowo, @zuzycie, @przejechane_kilometry, self.norma_spalania]
    end
    else
     CSV.open(@raport_path, "w+") do |csv|
