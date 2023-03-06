@@ -33,7 +33,7 @@ def cli_zbierz_dane
   puts "Podaj stan paliwa po powrocie z trasy"
   @paliwo_zjazd = gets.chomp.to_f
 
-  przejazd = Przejazd.new(@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @km_wyjazd, @km_powrot, @paliwo_wyjazd, @paliwo_dodatkowo, @paliwo_zjazd, @zuzycie, @przejechane_kilometry, @norma)
+  przejazd = Przejazd.new(@numer_pojazdu, @data_wyjazdu, @data_zjazdu, @km_wyjazd, @km_powrot, @paliwo_wyjazd, @paliwo_dodatkowo, @paliwo_zjazd, @zuzycie, @przejechane_kilometry)
 
   puts przejazd.norma_spalania
 
