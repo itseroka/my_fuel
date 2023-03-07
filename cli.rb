@@ -1,4 +1,4 @@
-require_relative "export"
+require_relative "przejazd"
 
 def cli_zbierz_dane
   puts "Podaj numer rejestracyjny pojazdu"

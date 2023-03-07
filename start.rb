@@ -1,5 +1,6 @@
-require_relative "export"
-require_relative 'cli.rb'
+require_relative "przejazd"
+require_relative "raporty"
+require_relative 'cli'
 
 
 system("clear")
