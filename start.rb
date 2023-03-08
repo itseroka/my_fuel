@@ -1,4 +1,7 @@
-require_relative "export"
+require_relative "przejazd"
+require_relative "raporty"
+require_relative 'cli'
+
 
 system("clear")
 
@@ -7,7 +10,7 @@ puts "Witaj w kalkulatorze norm spalania, będziesz poproszony o numer rejestrac
 puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
 
 raport = Raporty.new
-trasa = Przejazd.new
+
 
 while true
  puts "Wpisz polecenie aby zacząć - LICZ, LISTA, RAPORT, POJAZD"
@@ -27,10 +30,7 @@ while true
  break
 
  elsif input == "LICZ"
-
-  trasa.zbierz_dane
-  trasa.norma_spalania
-  trasa.zapisz
+  cli_zbierz_dane
  break
 
  else
