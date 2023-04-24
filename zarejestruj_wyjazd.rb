@@ -16,6 +16,6 @@ def cli_zarejestruj_wyjazd
 
   cli_zarejestruj_wyjazd
 
-  przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @data_wyjazdu, @km_wyjazd, @paliwo_wyjazd)
+  przejazd_proces = Przejazd_start.new(@numer_pojazdu, @data_wyjazdu, @km_wyjazd, @paliwo_wyjazd)
 
   przejazd_proces.wyjazd

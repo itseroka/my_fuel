@@ -1,6 +1,6 @@
 require 'csv'
 
-class Przejazd_proces
+class Przejazd_start
     attr_accessor :numer_pojazdu, :data_wyjazdu, :km_wyjazd, :paliwo_dodatkowoot
     def initialize(numer_pojazdu, data_wyjazdu, km_wyjazd, paliwo_wyjazd)
       @numer_pojazdu = numer_pojazdu
@@ -19,3 +19,18 @@ class Przejazd_proces
 
   end
   
+  class Przejazd_tankowanie
+    attr_accessor :paliwo_dodatkowo
+    def initialize(paliwo_dodatkowo)
+      @paliwo_dodatkowo = paliwo_dodatkowo
+    end
+  end
+
+  class Przejazd_zjazd
+    attr_accessor :data_zjazdu, :km_powrot, :paliwo_zjazd
+    def initialize(data_zjazdu, km_powrot, paliwo_zjazd)
+      @data_zjazdu = data_zjazdu
+      @km_powrot = km_powrot
+      @paliwo_zjazd = paliwo_zjazd
+    end
+  end
