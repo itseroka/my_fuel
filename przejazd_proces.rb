@@ -17,8 +17,7 @@ class Przejazd_proces
       @raport_path = "progress/#{@numer_pojazdu}.csv"
 
       CSV.open(@raport_path, "w+") do |csv|
-        csv << ["Data wyjazdu", "Sstan licznika podczas wyjazdu", "Stan paliwa podczas wyjazdu"]
-        csv << [@data_wyjazdu, @km_wyjazd, @paliwo_wyjazd]
+        csv << ["Wyjazd", @data_wyjazdu, @km_wyjazd, @paliwo_wyjazd]
        end
     end
 
