@@ -27,10 +27,26 @@ class Przejazd_start
 end
   
   class Przejazd_tankowanie
-    attr_accessor :paliwo_dodatkowo
-    def initialize(paliwo_dodatkowo)
-      @paliwo_dodatkowo = paliwo_dodatkowo
+    attr_accessor :numer_pojazdu, :data_tankowania, :paliwo_dodatkowo
+    def initialize(numer_pojazdu, data_tankowania, paliwo_dodatkowo)
+     @numer_pojazdu = numer_pojazdu
+     @data_tankowania = data_tankowania
+     @paliwo_dodatkowo = paliwo_dodatkowo
     end
+
+   def dodaj_tankowanie
+    @raport_path = "progress/#{@numer_pojazdu}.csv"
+      
+    if File.exists?(@raport_path)
+      CSV.open(@raport_path, "a+") do |csv|
+        csv << ["Tankowanie", @data_tankowania, @paliwo_dodatkowo]
+      end
+      puts "Tankowanie zostało dodane dla raportu: #{@raport_path}"
+      else
+       puts "Brak raportu - sprawdź poprawność numeru rejestracyjnego"
+      end
+   end
+
   end
 
   class Przejazd_zjazd
