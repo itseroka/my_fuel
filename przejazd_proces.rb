@@ -50,10 +50,25 @@ end
   end
 
   class Przejazd_zjazd
-    attr_accessor :data_zjazdu, :km_powrot, :paliwo_zjazd
-    def initialize(data_zjazdu, km_powrot, paliwo_zjazd)
+    attr_accessor :numer_pojazdu, :data_zjazdu, :km_powrot, :paliwo_zjazd
+    def initialize(numer_pojazdu, data_zjazdu, km_powrot, paliwo_zjazd)
+      @numer_pojazdu = numer_pojazdu
       @data_zjazdu = data_zjazdu
       @km_powrot = km_powrot
       @paliwo_zjazd = paliwo_zjazd
+    end
+
+    def dodaj_powrot
+      @raport_path = "progress/#{@numer_pojazdu}.csv"
+
+      if File.exists?(@raport_path)
+        CSV.open(@raport_path, "a+") do |csv|
+          csv << ["Powrót", @data_zjazdu, @km_powrot, @paliwo_zjazd]
+        end
+        puts "Zjazd został dodane dla raportu: #{@raport_path}"
+        else
+         puts "Brak raportu - sprawdź poprawność numeru rejestracyjnego"
+        end
+
     end
   end

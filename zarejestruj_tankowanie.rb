@@ -14,5 +14,3 @@ cli_zarejestruj_dodatnkowanie
 zarejestruj_dodatnkowanie = Przejazd_tankowanie.new(@numer_pojazdu, @data_tankowania, @paliwo_dodatkowo)
 
 zarejestruj_dodatnkowanie.dodaj_tankowanie
-
-puts "Dotankowano: #{zarejestruj_dodatnkowanie.paliwo_dodatkowo}"

@@ -1,6 +1,9 @@
 require_relative "przejazd_proces"
 
 def cli_zarejestruj_powrot
+    puts "Podaj numer pojazdu"
+    @numer_pojazdu = gets.chomp.upcase
+
     puts "Podaj datę zjazdu"
     @data_zjazdu = gets.chomp
    
@@ -13,6 +16,6 @@ def cli_zarejestruj_powrot
 
    cli_zarejestruj_powrot
 
-   zarejestruj_powrot = Przejazd_zjazd.new(@data_zjazdu, @km_powrot, @paliwo_zjazd)
+   zarejestruj_powrot = Przejazd_zjazd.new(@numer_pojazdu, @data_zjazdu, @km_powrot, @paliwo_zjazd)
 
-   puts "Dane do zapisania zjazdu #{zarejestruj_powrot.data_zjazdu}, #{zarejestruj_powrot.km_powrot}, #{zarejestruj_powrot.paliwo_zjazd}"
+   zarejestruj_powrot.dodaj_powrot
