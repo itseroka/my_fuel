@@ -69,6 +69,23 @@ end
         else
          puts "Brak raportu - sprawdź poprawność numeru rejestracyjnego"
         end
+    end
+    
+  end
+
+  class Norma
+    attr_accessor :numer_pojazdu
+    def initialize(numer_pojazdu)
+      @numer_pojazdu = numer_pojazdu
+    end
+
+    def wyswietl
+      @raport_path = "progress/#{@numer_pojazdu}.csv"
+
+      CSV.foreach(@raport_path, headers: true) do |row|
+        puts row
+      end
 
     end
+
   end

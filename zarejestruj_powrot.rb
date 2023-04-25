@@ -19,3 +19,4 @@ def cli_zarejestruj_powrot
    zarejestruj_powrot = Przejazd_zjazd.new(@numer_pojazdu, @data_zjazdu, @km_powrot, @paliwo_zjazd)
 
    zarejestruj_powrot.dodaj_powrot
+   zarejestruj_powrot.oblicz_norme_spalania
