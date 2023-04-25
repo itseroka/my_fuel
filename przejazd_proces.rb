@@ -12,12 +12,19 @@ class Przejazd_start
     def wyjazd
       @raport_path = "progress/#{@numer_pojazdu}.csv"
 
-      CSV.open(@raport_path, "w+") do |csv|
+      if File.exists?(@raport_path)
+      CSV.open(@raport_path, "a+") do |csv|
         csv << ["Wyjazd", @data_wyjazdu, @km_wyjazd, @paliwo_wyjazd]
-       end
+      end
+      puts "Wyjazd został zarejestrowany dla: #{@raport_path}"
+      else
+       CSV.open(@raport_path, "w+") do |csv|
+        csv << ["Wyjazd", @data_wyjazdu, @km_wyjazd, @paliwo_wyjazd]
+        end
+        puts "Plik został utworzony: #{@raport_path}"
+      end
     end
-
-  end
+end
   
   class Przejazd_tankowanie
     attr_accessor :paliwo_dodatkowo
