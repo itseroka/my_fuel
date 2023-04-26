@@ -82,9 +82,8 @@ end
     def wyswietl
       @raport_path = "progress/#{@numer_pojazdu}.csv"
 
-      CSV.foreach(@raport_path) do |row|
-        puts "#{row[0]} #{row[1]} #{row[2]} #{row[3]}"
-      end
+      dane = CSV.read(@raport_path)
+        puts "#{dane[0][2]}"
       
     end
 
