@@ -9,5 +9,4 @@ cli_zarejestruj_powrot
 
 norma = Norma.new(@numer_pojazdu)
 
-
 puts norma.wyswietl
