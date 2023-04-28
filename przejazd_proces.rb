@@ -80,11 +80,30 @@ end
     end
 
     def wyswietl
-      @raport_path = "progress/#{@numer_pojazdu}.csv"
+      plik_csv = "progress/#{@numer_pojazdu}.csv"
 
-      dane = CSV.read(@raport_path)
-        puts "#{dane[0][2]}"
-      
+      stan_licznika = 0.0
+      stan_poczatkowy_paliwa = 0
+      ilosc_paliwa = []
+      stan_koncowy_paliwa = 0
+      norma_spalania = 0
+
+      CSV.foreach(plik_csv) do |row|
+        case row[0]
+        when "Wyjazd"
+          stan_licznika = row[2].to_f
+          stan_poczatkowy_paliwa = row[3].to_f
+        when "Tankowanie"
+          ilosc_paliwa.shift
+          ilosc_paliwa << row[2].to_f
+        when "Powrót"
+          przejechany_dystans = row[2].to_f - stan_licznika
+          stan_koncowy_paliwa = row[3].to_f
+          zuzyte_paliwo = stan_poczatkowy_paliwa + ilosc_paliwa.sum - stan_koncowy_paliwa
+          norma_spalania = zuzyte_paliwo / przejechany_dystans * 100
+        end
+      end
+      puts "Twoje spalanie z trasy to #{norma_spalania}"
     end
 
   end
