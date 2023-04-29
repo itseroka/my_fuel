@@ -94,7 +94,6 @@ end
           stan_licznika = row[2].to_f
           stan_poczatkowy_paliwa = row[3].to_f
         when "Tankowanie"
-          ilosc_paliwa.shift
           ilosc_paliwa << row[2].to_f
         when "Powrót"
           przejechany_dystans = row[2].to_f - stan_licznika
