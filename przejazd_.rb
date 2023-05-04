@@ -15,7 +15,7 @@ class Przejazd
             @tankowania = []
         end
 
-        @tankowania << data_tankowania
+        @tankowania << [data_tankowania]
     end
 
     def powrot(data_powrotu)
@@ -27,13 +27,14 @@ class Przejazd
         CSV.open(nazwa_pliku, "w+") do |csv|
             csv << ["wyjazd", @data_wyjazdu]
             for i in 0..@tankowania.length-1
-                csv << ["tankowanie", @tankowania[i]]
+                csv << ["tankowanie"] + @tankowania[i]
             end
             csv << ["powrot", @data_powrotu]
         end
     end
 
 end
+
 
 przejazd = Przejazd.new("DW 12345")
 przejazd.wyjazd("2017-01-01")
