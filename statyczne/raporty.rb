@@ -2,8 +2,8 @@ require 'csv'
 
 class Raporty
     def wyswietl_liste
-     Dir.entries("files/").sort_by do |entry|
-      File.ctime("files//#{entry}")
+     Dir.entries("statyczne/files/").sort_by do |entry|
+      File.ctime("statyczne/files//#{entry}")
       end.reject { |entry| ['.', '..', '.DS_Store'].include?(entry) }.each do |entry|
        puts entry
     end
@@ -13,7 +13,7 @@ class Raporty
    
      puts "Podaj nazwe pliku csv aby wyświetlić dane (bez rozszerzenia)"
      @szukaj = gets.chomp.upcase
-     @raport_path = "files/#{@szukaj}.csv"
+     @raport_path = "statyczne/files/#{@szukaj}.csv"
    
      begin
       CSV.foreach(@raport_path, headers: true) do |row|
@@ -29,7 +29,7 @@ class Raporty
      puts "Podaj numer rejestracyjny pojazdu do przeszukania raportu"
      @szukaj = gets.chomp.upcase
          
-     @raport_path = "files/#{@szukaj}.csv"
+     @raport_path = "statyczne/files/#{@szukaj}.csv"
      
      if File.exist?(@raport_path)
       puts "Dane dla pojazdu: #{@szukaj}:"

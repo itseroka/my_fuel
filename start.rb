@@ -1,6 +1,6 @@
-require_relative "przejazd"
-require_relative "raporty"
-require_relative 'cli'
+require_relative "statyczne/przejazd"
+require_relative "statyczne/raporty"
+require_relative 'statyczne/cli'
 
 
 system("clear")

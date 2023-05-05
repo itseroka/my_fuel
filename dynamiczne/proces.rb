@@ -41,7 +41,7 @@ def cli_zarejestruj_wyjazd
   cli_zarejestruj_dodatnkowanie
   cli_zarejestruj_powrot
 
-  przejazd_proces = Przejazd.new(@numer_pojazdu)
+  przejazd_proces = Przejazd_proces.new(@numer_pojazdu)
 
   przejazd_proces.wyjazd(@data_wyjazdu, @km_wyjazd, @paliwo_wyjazd)
   przejazd_proces.dodaj_tankowanie(@data_tankowania, @paliwo_dodatkowo)

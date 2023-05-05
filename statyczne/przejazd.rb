@@ -24,7 +24,7 @@ class Przejazd
  end
 
  def zapisz
- @raport_path = "files/#{@numer_pojazdu}.csv"
+ @raport_path = "statyczne/files/#{@numer_pojazdu}.csv"
 
    if File.exists?(@raport_path)
     CSV.open(@raport_path, "a+") do |csv|
