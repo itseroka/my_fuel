@@ -11,29 +11,22 @@ puts "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"
 
 raport = Raporty.new
 
+puts "Wpisz polecenie aby zacząć - LICZ, LISTA, RAPORT, POJAZD"
+input = gets.chomp.upcase
 
-while true
- puts "Wpisz polecenie aby zacząć - LICZ, LISTA, RAPORT, POJAZD"
- input = gets.chomp.upcase
+case input
+when "LISTA"
+    raport.wyswietl_liste
 
- if input == "LISTA"
-  raport.wyswietl_liste
- break
+when "RAPORT"
+    raport.wyswietl_liste
+    raport.wyswietl_raport
 
- elsif input == "RAPORT"
-  raport.wyswietl_liste
-  raport.wyswietl_raport
- break
+when "POJAZD"
+    raport.pojazd_csv
 
- elsif input == "POJAZD"
-  raport.pojazd_csv
- break
-
- elsif input == "LICZ"
-  cli_zbierz_dane
- break
-
- else
-  puts "Nieznana komenda, proszę spróbować ponownie."
- end
+when "LICZ"
+    cli_zbierz_dane
+else
+    puts "Nieznana komenda, proszę spróbować ponownie."
 end
