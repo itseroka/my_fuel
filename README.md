@@ -17,3 +17,6 @@ Plik start_proces.rb jest odpowiedziany za dynamiczne zbieranie danych - przejaz
 - po uruchomieniu polecenia "ZJAZD" zapiszesz te dane, które dotyczą zjazdu na bazę oraz zostanie obliczona norma.
 
 _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+Wymagana poprawa zapisu plików CSV.
+Work in progress...
