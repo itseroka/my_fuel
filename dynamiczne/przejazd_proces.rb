@@ -4,7 +4,7 @@ require 'csv'
 
     def initialize(numer_pojazdu)
       @numer_pojazdu = numer_pojazdu
-      @raport_path = "progress/#{@numer_pojazdu}.csv"
+      @raport_path = "dynamiczne/progress/#{@numer_pojazdu}.csv"
     end
 
     def wyjazd(data_wyjazdu, km_wyjazd, paliwo_wyjazd)

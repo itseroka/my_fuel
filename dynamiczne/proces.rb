@@ -36,15 +36,4 @@ def cli_zarejestruj_wyjazd
     puts "Podaj stan paliwa po powrocie z trasy"
     @paliwo_zjazd = gets.chomp.to_f
    end
-
-  cli_zarejestruj_wyjazd
-  cli_zarejestruj_dodatnkowanie
-  cli_zarejestruj_powrot
-
-  przejazd_proces = Przejazd_proces.new(@numer_pojazdu)
-
-  przejazd_proces.wyjazd(@data_wyjazdu, @km_wyjazd, @paliwo_wyjazd)
-  przejazd_proces.dodaj_tankowanie(@data_tankowania, @paliwo_dodatkowo)
-  przejazd_proces.dodaj_powrot(@data_zjazdu, @km_powrot, @paliwo_zjazd)
-
   
