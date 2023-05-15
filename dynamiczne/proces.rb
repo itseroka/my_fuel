@@ -21,8 +21,13 @@ def cli_zarejestruj_wyjazd
   def cli_zarejestruj_dodatnkowanie
     puts "Podaj numer pojazdu"
     @numer_pojazdu = gets.chomp.upcase
+
+    puts "Podaj liczbę porządkową/numer trasy"
+    @numer_trasy = gets.chomp.to_i
+
     puts "Podaj datę tankowania"
     @data_tankowania = gets.chomp
+
     puts "Podaj ilość dotankowanego paliwa"
     @paliwo_dodatkowo = gets.chomp.to_f
    end

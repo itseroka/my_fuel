@@ -13,7 +13,7 @@ when "WYJAZD"
 
 when "TANKOWANIE"
     cli_zarejestruj_dodatnkowanie
-    przejazd_proces = Przejazd_proces.new(@numer_pojazdu)
+    przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
     przejazd_proces.dodaj_tankowanie(@data_tankowania, @paliwo_dodatkowo)
 
 when "ZJAZD"

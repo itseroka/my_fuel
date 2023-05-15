@@ -33,7 +33,7 @@ require 'csv'
 
       if File.exists?(@raport_path)
         CSV.open(@raport_path, "a+") do |csv|
-          csv << ["Tankowanie", @data_tankowania, @paliwo_dodatkowo]
+          csv << ["Tankowanie", @numer_trasy, @data_tankowania, @paliwo_dodatkowo]
         end
         puts "Tankowanie zostało dodane dla raportu: #{@raport_path}"
         else
