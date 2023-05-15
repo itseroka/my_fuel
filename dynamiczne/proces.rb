@@ -35,6 +35,9 @@ def cli_zarejestruj_wyjazd
    def cli_zarejestruj_powrot
     puts "Podaj numer pojazdu"
     @numer_pojazdu = gets.chomp.upcase
+    
+    puts "Podaj liczbę porządkową/numer trasy"
+    @numer_trasy = gets.chomp.to_i
 
     puts "Podaj datę zjazdu"
     @data_zjazdu = gets.chomp

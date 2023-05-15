@@ -48,7 +48,7 @@ require 'csv'
 
       if File.exists?(@raport_path)
         CSV.open(@raport_path, "a+") do |csv|
-          csv << ["Powrót", @data_zjazdu, @km_powrot, @paliwo_zjazd]
+          csv << ["Powrót", @numer_trasy, @data_zjazdu, @km_powrot, @paliwo_zjazd]
         end
         puts "Zjazd został dodane dla raportu: #{@raport_path}"
         else
@@ -66,14 +66,14 @@ require 'csv'
         CSV.foreach(@raport_path) do |row|
           case row[0]
           when "Wyjazd"
-            stan_licznika = row[2].to_f
-            stan_poczatkowy_paliwa = row[3].to_f
+            stan_licznika = row[3].to_f
+            stan_poczatkowy_paliwa = row[4].to_f
           when "Tankowanie"
-            ilosc_paliwa << row[2].to_f
+            ilosc_paliwa << row[3].to_f
           when "Powrót"
-            data_normy = row[1]
-            przejechany_dystans = row[2].to_f - stan_licznika
-            stan_koncowy_paliwa = row[3].to_f
+            data_normy = row[2]
+            przejechany_dystans = row[3].to_f - stan_licznika
+            stan_koncowy_paliwa = row[4].to_f
             zuzyte_paliwo = stan_poczatkowy_paliwa + ilosc_paliwa.sum - stan_koncowy_paliwa
             norma_spalania = zuzyte_paliwo / przejechany_dystans * 100
           end
@@ -81,7 +81,7 @@ require 'csv'
         puts "Twoje spalanie z trasy to #{norma_spalania}"
         if File.exists?(@raport_path)
           CSV.open(@raport_path, "a+") do |csv|
-            csv << ["Norma", data_normy, norma_spalania]
+            csv << ["Norma", @numer_trasy, data_normy, norma_spalania]
           end
         end
 

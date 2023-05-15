@@ -18,7 +18,7 @@ when "TANKOWANIE"
 
 when "ZJAZD"
     cli_zarejestruj_powrot
-    przejazd_proces = Przejazd_proces.new(@numer_pojazdu)
+    przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
     przejazd_proces.dodaj_powrot(@data_zjazdu, @km_powrot, @paliwo_zjazd)
 else
     puts "Nieznana komenda, proszę spróbować ponownie."
