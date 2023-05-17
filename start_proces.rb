@@ -4,7 +4,6 @@ require_relative 'dynamiczne/przejazd_proces'
 puts "Wpisz polecenie aby zacząć - WYJAZD, TANKOWANIE, ZJAZD"
 input = gets.chomp.upcase
 
-
 case input
 when "WYJAZD"
     cli_zarejestruj_wyjazd
