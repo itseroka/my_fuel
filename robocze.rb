@@ -76,9 +76,15 @@ if File.exists?(@raport_path)
 
   CSV.foreach(@raport_path) do |row|
    @numer_trasy_csv = row[1]
-   @polecenie = row[0]
+   @ostatnie_polecenie = row[0]
   end
   puts "Ostatnio użyte polecnie to: #{@polecenie}"
+
+  if @polecenie == "Norma"
+      puts "Wykonujemy kod"
+  else
+      puts "Nie można zarejestrować wyjazdu ponieważ ostatni przejazd nie został zakończony"
+  end
 
  else
         puts "Raport nie istnieje! :("
