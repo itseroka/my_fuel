@@ -18,15 +18,23 @@ when "WYJAZD"
 
 when "TANKOWANIE"
     pobierz_numer
+    if @ostatnie_polecenie == "Tankowanie" || @ostatnie_polecenie == "Wyjazd"
     cli_zarejestruj_dodatnkowanie(@numer_pojazdu)
     przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
     przejazd_proces.dodaj_tankowanie(@data_tankowania, @paliwo_dodatkowo)
+else
+    puts "Nie można wykonać"
+end
 
 when "ZJAZD"
     pobierz_numer
+    if @ostatnie_polecenie == "Tankowanie" || @ostatnie_polecenie == "Wyjazd"
     cli_zarejestruj_powrot(@numer_pojazdu)
     przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
     przejazd_proces.dodaj_powrot(@data_zjazdu, @km_powrot, @paliwo_zjazd)
+    else
+    puts "Nie można wykonać"
+    end
 else
     puts "Nieznana komenda, proszę spróbować ponownie."
 end
