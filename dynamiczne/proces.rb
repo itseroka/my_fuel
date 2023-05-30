@@ -1,4 +1,5 @@
 require_relative "przejazd_proces"
+require 'csv'
 
 def pobierz_numer
   puts "Podaj numer rejestracyjny pojazdu"
@@ -11,10 +12,11 @@ def pobierz_numer
      @ostatnie_polecenie = row[0]
     end
  end
+ return @numer_pojazdu
 end
 
-def cli_zarejestruj_wyjazd
-    pobierz_numer
+def cli_zarejestruj_wyjazd(numer_pojazdu)
+    @numer_pojazdu = numer_pojazdu
 
     puts "Podaj liczbę porządkową/numer trasy"
     @numer_trasy = gets.chomp.to_i
@@ -27,12 +29,12 @@ def cli_zarejestruj_wyjazd
   
     puts "Podaj stan paliwa przy wyjeździe w trasę"
     @paliwo_wyjazd = gets.chomp.to_f
-
+    
   end
   
 
-  def cli_zarejestruj_dodatnkowanie
-    pobierz_numer
+  def cli_zarejestruj_dodatnkowanie(numer_pojazdu)
+    @numer_pojazdu = numer_pojazdu
 
     puts "Podaj liczbę porządkową/numer trasy"
     @numer_trasy = gets.chomp.to_i
@@ -44,8 +46,8 @@ def cli_zarejestruj_wyjazd
     @paliwo_dodatkowo = gets.chomp.to_f
    end
 
-   def cli_zarejestruj_powrot
-    pobierz_numer
+   def cli_zarejestruj_powrot(numer_pojazdu)
+    @numer_pojazdu = numer_pojazdu
     
     puts "Podaj liczbę porządkową/numer trasy"
     @numer_trasy = gets.chomp.to_i

@@ -1,4 +1,4 @@
-require 'csv'
+
 
 # def cli_zarejestruj_wyjazd
 #   puts "Podaj numer rejestracyjny pojazdu"
@@ -80,10 +80,10 @@ if File.exists?(@raport_path)
   end
   puts "Ostatnio użyte polecnie to: #{@polecenie}"
 
-  if @polecenie == "Norma"
+  if @ostatnie_polecenie == "Norma"
       puts "Wykonujemy kod"
   else
-      puts "Nie można zarejestrować wyjazdu ponieważ ostatni przejazd nie został zakończony"
+      break
   end
 
  else

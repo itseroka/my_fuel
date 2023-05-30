@@ -6,17 +6,20 @@ input = gets.chomp.upcase
 
 case input
 when "WYJAZD"
-    cli_zarejestruj_wyjazd
+    pobierz_numer
+    cli_zarejestruj_wyjazd(@numer_pojazdu)
     przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
     przejazd_proces.wyjazd(@data_wyjazdu, @km_wyjazd, @paliwo_wyjazd)
 
 when "TANKOWANIE"
-    cli_zarejestruj_dodatnkowanie
+    pobierz_numer
+    cli_zarejestruj_dodatnkowanie(@numer_pojazdu)
     przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
     przejazd_proces.dodaj_tankowanie(@data_tankowania, @paliwo_dodatkowo)
 
 when "ZJAZD"
-    cli_zarejestruj_powrot
+    pobierz_numer
+    cli_zarejestruj_powrot(@numer_pojazdu)
     przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
     przejazd_proces.dodaj_powrot(@data_zjazdu, @km_powrot, @paliwo_zjazd)
 else
