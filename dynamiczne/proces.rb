@@ -12,7 +12,7 @@ def pobierz_numer
      @ostatnie_polecenie = row[0]
     end
  end
- return @numer_pojazdu
+ return @numer_pojazdu, @ostatnie_polecenie
 end
 
 def cli_zarejestruj_wyjazd(numer_pojazdu)
