@@ -8,9 +8,9 @@ case input
 when "WYJAZD"
     pobierz_numer
     if @ostatnie_polecenie == "Norma" || !File.exists?(@raport_path)
-     cli_zarejestruj_wyjazd(@numer_pojazdu)
+     cli_zarejestruj_wyjazd(@numer_pojazdu, @numer_trasy_csv)
      przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
-     przejazd_proces.wyjazd(@data_wyjazdu, @km_wyjazd, @paliwo_wyjazd)
+     przejazd_proces.wyjazd(@data_wyjazdu, @km_wyjazd, @paliwo_wyjazd, @numer_trasy_csv)
     else
         puts "Nie można wykonać"
     end
@@ -19,9 +19,9 @@ when "WYJAZD"
 when "TANKOWANIE"
     pobierz_numer
     if @ostatnie_polecenie == "Tankowanie" || @ostatnie_polecenie == "Wyjazd"
-    cli_zarejestruj_dodatnkowanie(@numer_pojazdu)
+    cli_zarejestruj_dodatnkowanie(@numer_pojazdu, @numer_trasy_csv)
     przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
-    przejazd_proces.dodaj_tankowanie(@data_tankowania, @paliwo_dodatkowo)
+    przejazd_proces.dodaj_tankowanie(@data_tankowania, @paliwo_dodatkowo, @numer_trasy_csv)
 else
     puts "Nie można wykonać"
 end
@@ -29,9 +29,9 @@ end
 when "ZJAZD"
     pobierz_numer
     if @ostatnie_polecenie == "Tankowanie" || @ostatnie_polecenie == "Wyjazd"
-    cli_zarejestruj_powrot(@numer_pojazdu)
+    cli_zarejestruj_powrot(@numer_pojazdu, @numer_trasy_csv)
     przejazd_proces = Przejazd_proces.new(@numer_pojazdu, @numer_trasy)
-    przejazd_proces.dodaj_powrot(@data_zjazdu, @km_powrot, @paliwo_zjazd)
+    przejazd_proces.dodaj_powrot(@data_zjazdu, @km_powrot, @paliwo_zjazd, @numer_trasy_csv)
     else
     puts "Nie można wykonać"
     end

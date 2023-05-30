@@ -8,18 +8,18 @@ def pobierz_numer
 
   if File.exists?(@raport_path)
     CSV.foreach(@raport_path) do |row|
-     @numer_trasy_csv = row[1]
+     @numer_trasy_csv = row[1].to_i
      @ostatnie_polecenie = row[0]
     end
  end
- return @numer_pojazdu, @ostatnie_polecenie
+ return @numer_pojazdu, @ostatnie_polecenie, @numer_trasy_csv
 end
 
-def cli_zarejestruj_wyjazd(numer_pojazdu)
+def cli_zarejestruj_wyjazd(numer_pojazdu, numer_trasy_csv)
     @numer_pojazdu = numer_pojazdu
+    @numer_trasy_csv = numer_trasy_csv
 
-    puts "Podaj liczbę porządkową/numer trasy"
-    @numer_trasy = gets.chomp.to_i
+    @numer_trasy = 1
   
     puts "Podaj datę wyjazdu"
     @data_wyjazdu = gets.chomp
@@ -33,11 +33,9 @@ def cli_zarejestruj_wyjazd(numer_pojazdu)
   end
   
 
-  def cli_zarejestruj_dodatnkowanie(numer_pojazdu)
+  def cli_zarejestruj_dodatnkowanie(numer_pojazdu, numer_trasy_csv)
     @numer_pojazdu = numer_pojazdu
-
-    puts "Podaj liczbę porządkową/numer trasy"
-    @numer_trasy = gets.chomp.to_i
+    @numer_trasy_csv = numer_trasy_csv
 
     puts "Podaj datę tankowania"
     @data_tankowania = gets.chomp
@@ -46,11 +44,9 @@ def cli_zarejestruj_wyjazd(numer_pojazdu)
     @paliwo_dodatkowo = gets.chomp.to_f
    end
 
-   def cli_zarejestruj_powrot(numer_pojazdu)
+   def cli_zarejestruj_powrot(numer_pojazdu, numer_trasy_csv)
     @numer_pojazdu = numer_pojazdu
-    
-    puts "Podaj liczbę porządkową/numer trasy"
-    @numer_trasy = gets.chomp.to_i
+    @numer_trasy_csv = numer_trasy_csv
 
     puts "Podaj datę zjazdu"
     @data_zjazdu = gets.chomp
