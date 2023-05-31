@@ -2,9 +2,8 @@ require 'csv'
 
   class Przejazd_proces
 
-    def initialize(numer_pojazdu, numer_trasy)
+    def initialize(numer_pojazdu)
       @numer_pojazdu = numer_pojazdu
-      @numer_trasy = numer_trasy
       @raport_path = "dynamiczne/progress/#{@numer_pojazdu}.csv"
     end
 
@@ -14,9 +13,9 @@ require 'csv'
       @km_wyjazd = km_wyjazd
       @paliwo_wyjazd = paliwo_wyjazd
       @numer_trasy_csv = numer_trasy_csv
-      @numer_trasy_csv += 1
 
       if File.exists?(@raport_path)
+       @numer_trasy_csv += 1
       CSV.open(@raport_path, "a+") do |csv|
         csv << ["Wyjazd", @numer_trasy_csv, @data_wyjazdu, @km_wyjazd, @paliwo_wyjazd]
       end

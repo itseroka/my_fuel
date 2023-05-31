@@ -18,8 +18,6 @@ end
 def cli_zarejestruj_wyjazd(numer_pojazdu, numer_trasy_csv)
     @numer_pojazdu = numer_pojazdu
     @numer_trasy_csv = numer_trasy_csv
-
-    @numer_trasy = 1
   
     puts "Podaj datę wyjazdu"
     @data_wyjazdu = gets.chomp
