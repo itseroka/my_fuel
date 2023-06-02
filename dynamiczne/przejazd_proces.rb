@@ -1,18 +1,23 @@
 require 'csv'
 
-  class Przejazd_proces
+  class Przejazd
 
     def initialize(numer_pojazdu)
       @numer_pojazdu = numer_pojazdu
       @raport_path = "dynamiczne/progress/#{@numer_pojazdu}.csv"
+      if File.exists?(@raport_path)
+        CSV.foreach(@raport_path) do |row|
+         @numer_trasy_csv = row[1].to_i
+         @ostatnie_polecenie = row[0]
+        end
+     end
     end
 
-    def wyjazd(data_wyjazdu, km_wyjazd, paliwo_wyjazd, numer_trasy_csv)
+    def wyjazd(data_wyjazdu, km_wyjazd, paliwo_wyjazd)
 
       @data_wyjazdu = data_wyjazdu
       @km_wyjazd = km_wyjazd
       @paliwo_wyjazd = paliwo_wyjazd
-      @numer_trasy_csv = numer_trasy_csv
 
       if File.exists?(@raport_path)
        @numer_trasy_csv += 1
@@ -28,10 +33,9 @@ require 'csv'
       end
      end
 
-     def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo, numer_trasy_csv)
+     def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
       @data_tankowania = data_tankowania
       @paliwo_dodatkowo = paliwo_dodatkowo
-      @numer_trasy_csv = numer_trasy_csv
 
       if File.exists?(@raport_path)
         CSV.open(@raport_path, "a+") do |csv|
@@ -43,11 +47,10 @@ require 'csv'
         end
      end
 
-     def dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd, numer_trasy_csv)
+     def dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
       @data_zjazdu = data_zjazdu
       @km_powrot = km_powrot
       @paliwo_zjazd = paliwo_zjazd
-      @numer_trasy_csv = numer_trasy_csv
 
       if File.exists?(@raport_path)
         CSV.open(@raport_path, "a+") do |csv|
