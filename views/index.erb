@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyFuel</title>
+</head>
+<body>
+  <h1>Dane z pliku CSV</h1>
+
+  <table>
+    <tbody>
+      <% @item.each do |row| %>
+        <tr>
+          <td><%= row[0] %></td>
+          <td><%= row[1] %></td>
+          <td><%= row[2] %></td>
+          <td><%= row[3] %></td>          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>
