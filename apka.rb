@@ -56,23 +56,23 @@ get '/' do
 
   post '/wyjazd' do
 
-    przejazd = Przejazd.new
+    przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
 
-    przejazd.wyjazd(params[:numer_pojazdu].upcase, params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
+    przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
   
     redirect '/'
   end
 
   post '/tankowanie' do
-    przejazd = Przejazd.new
-    przejazd.dodaj_tankowanie(params[:numer_pojazdu].upcase, params[:data_tankowania], params[:paliwo_dodatkowo].to_f)
+    przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
+    przejazd.dodaj_tankowanie(params[:data_tankowania], params[:paliwo_dodatkowo].to_f)
 
        redirect '/'
   end
 
   post '/zjazd' do
-    przejazd = Przejazd.new
-    przejazd.dodaj_powrot(params[:numer_pojazdu].upcase, params[:data_zjazdu], params[:km_powrot].to_f, params[:paliwo_zjazd].to_f)
+    przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
+    przejazd.dodaj_powrot(params[:data_zjazdu], params[:km_powrot].to_f, params[:paliwo_zjazd].to_f)
 
         redirect '/'
   end

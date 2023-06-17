@@ -1,37 +1,46 @@
 require 'csv'
 
 class Przejazd
-    def wyjazd(numer_pojazdu, data_wyjazdu, km_wyjazd, paliwo_wyjazd)
-      raport_path = "./data/#{numer_pojazdu}.csv"
-      if File.exists?(raport_path)
+  def initialize(numer_pojazdu)
+    @raport_path = "./data/#{numer_pojazdu}.csv"
+    if File.exists?(@raport_path)
+      CSV.foreach(@raport_path) do |row|
+       numer_trasy_csv = row[1].to_i
+       ostatnie_polecenie = row[0]
+      end
+   end
+  end
+
+    def wyjazd(data_wyjazdu, km_wyjazd, paliwo_wyjazd)
+
+      if File.exists?(@raport_path)
         ostatnie_polecenie = nil
         numer_trasy_csv = nil
-        CSV.foreach(raport_path) do |row|
+        CSV.foreach(@raport_path) do |row|
           numer_trasy_csv = row[1].to_i + 1
           ostatnie_polecenie = row[0]
         end
       end
   
-      if ostatnie_polecenie == "Norma" || File.exists?(raport_path)
-        CSV.open(raport_path, "a+") do |csv|
+      if ostatnie_polecenie == "Norma" || File.exists?(@raport_path)
+        CSV.open(@raport_path, "a+") do |csv|
           csv << ["Wyjazd", numer_trasy_csv, data_wyjazdu, km_wyjazd, paliwo_wyjazd]
         end
         # puts "Wyjazd został zarejestrowany dla: #{@raport_path}"
       else
-        CSV.open(raport_path, "w+") do |csv|
+        CSV.open(@raport_path, "w+") do |csv|
           csv << ["Wyjazd", 1, data_wyjazdu, km_wyjazd, paliwo_wyjazd]
         end
         # puts "Plik został utworzony: #{@raport_path}"
       end
     end
 
-def dodaj_tankowanie(numer_pojazdu, data_tankowania, paliwo_dodatkowo)
+def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
 
-    raport_path = "./data/#{numer_pojazdu}.csv"
-    if File.exists?(raport_path)
+    if File.exists?(@raport_path)
         ostatnie_polecenie = nil
         numer_trasy_csv = nil
-        CSV.foreach(raport_path) do |row|
+        CSV.foreach(@raport_path) do |row|
          numer_trasy_csv = row[1].to_i
          ostatnie_polecenie = row[0]
         end
@@ -39,8 +48,8 @@ def dodaj_tankowanie(numer_pojazdu, data_tankowania, paliwo_dodatkowo)
 
 
     if ostatnie_polecenie == "Tankowanie" || ostatnie_polecenie == "Wyjazd"
-        if File.exists?(raport_path)
-          CSV.open(raport_path, "a+") do |csv|
+        if File.exists?(@raport_path)
+          CSV.open(@raport_path, "a+") do |csv|
             csv << ["Tankowanie", numer_trasy_csv, data_tankowania, paliwo_dodatkowo]
           end
         #   puts "Tankowanie zostało dodane dla raportu: #{@raport_path}"
@@ -51,21 +60,20 @@ def dodaj_tankowanie(numer_pojazdu, data_tankowania, paliwo_dodatkowo)
 end
 
 
-def dodaj_powrot(numer_pojazdu, data_zjazdu, km_powrot, paliwo_zjazd)
+def dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
 
-    raport_path = "./data/#{numer_pojazdu}.csv"
-    if File.exists?(raport_path)
+    if File.exists?(@raport_path)
         ostatnie_polecenie = nil
         numer_trasy_csv = nil
-        CSV.foreach(raport_path) do |row|
+        CSV.foreach(@raport_path) do |row|
          numer_trasy_csv = row[1].to_i
          ostatnie_polecenie = row[0]
         end
      end
 
     if ostatnie_polecenie == "Tankowanie" || ostatnie_polecenie == "Wyjazd"
-        if File.exists?(raport_path)
-          CSV.open(raport_path, "a+") do |csv|
+        if File.exists?(@raport_path)
+          CSV.open(@raport_path, "a+") do |csv|
             csv << ["Powrót", numer_trasy_csv, data_zjazdu, km_powrot, paliwo_zjazd]
           end
         #   puts "Zjazd został dodane dla raportu: #{@raport_path}"
@@ -80,7 +88,7 @@ def dodaj_powrot(numer_pojazdu, data_zjazdu, km_powrot, paliwo_zjazd)
         norma_spalania = 0
         data_normy = nil
         
-        CSV.foreach(raport_path) do |row|
+        CSV.foreach(@raport_path) do |row|
           if row[0] == "Wyjazd" && row[1] == "#{numer_trasy_csv}"
             stan_licznika = row[3].to_f
             stan_poczatkowy_paliwa = row[4].to_f
@@ -97,8 +105,8 @@ def dodaj_powrot(numer_pojazdu, data_zjazdu, km_powrot, paliwo_zjazd)
              
         # puts "Twoje spalanie z trasy to #{norma_spalania}"
              
-         if File.exists?(raport_path)
-           CSV.open(raport_path, "a+") do |csv|
+         if File.exists?(@raport_path)
+           CSV.open(@raport_path, "a+") do |csv|
              csv << ["Norma", numer_trasy_csv, data_normy, norma_spalania]
            end
          end
