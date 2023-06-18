@@ -18,26 +18,17 @@
     <input type="submit" value="Szukaj">
   </form>
 
-<form action="/submit" method="get">
-
-  <p><a href="/lista_plikow">Przejdź do listy plików</a></p>
-
+<form action="/lista_plikow" method="get">
+  <p><a href="/lista_plikow">Przejdź do listy raportów</a></p>
 </form>
 
-<h1>Dodaj wyjazd</h1>
+<form action="/about" method="get">
+  <p><a href="/about">O stronie</a></p>
+</form>
 
-  <form action="/wyjazd" method="post">
-    <label for="numer_pojazdu">Numer rejestracyjny:</label>
-    <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
-    <label for="data_wyjazdu">Data wyjazdu:</label>
-    <input type="text" id="data_wyjazdu" name="data_wyjazdu" required><br><br>
-    <label for="km_wyjazd">Stan licznika:</label>
-    <input type="text" id="km_wyjazd" name="km_wyjazd" required><br><br>
-    <label for="paliwo_wyjazd">Stan paliwa podczas wyjazdu:</label>
-    <input type="text" id="paliwo_wyjazd" name="paliwo_wyjazd" required><br><br>
-
-    <input type="submit" value="Dodaj wyjazd">
-  </form>
+<form action="/wyjazd_formularz" method="get">
+  <p><a href="/wyjazd_formularz">Dodaj wyjazd</a></p>
+</form>
 
 
 <h1>Dodaj tankowanie</h1>
