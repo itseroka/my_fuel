@@ -4,19 +4,41 @@
   <title>MyFuel</title>
 </head>
 <body>
-  <h1>Dane z pliku CSV</h1>
 
-  <table>
-    <tbody>
-      <% @item.each do |row| %>
-        <tr>
-          <td><%= row[0] %></td>
-          <td><%= row[1] %></td>
-          <td><%= row[2] %></td>
-          <td><%= row[3] %></td>          
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<h1>Wyszukaj pojazd</h1>
+
+  <% if @error_message %>
+    <p><%= @error_message %></p>
+  <% end %>
+
+  <form action="/submit" method="post">
+    <label for="numer_pojazdu">Numer rejestracyjny:</label>
+    <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
+
+    <input type="submit" value="Szukaj">
+  </form>
+
+
+<form action="/wyjazd_formularz" method="get">
+  <p><a href="/wyjazd_formularz">Dodaj wyjazd</a></p>
+</form>
+
+<form action="/tankowanie_formularz" method="get">
+  <p><a href="/tankowanie_formularz">Dodaj tankowanie</a></p>
+</form>
+
+
+<form action="/zjazd_formularz" method="get">
+  <p><a href="/zjazd_formularz">Dodaj powrót na bazę</a></p>
+</form>
+
+<form action="/lista_plikow" method="get">
+  <p><a href="/lista_plikow">Przejdź do listy raportów</a></p>
+</form>
+
+<form action="/about" method="get">
+  <p><a href="/about">O stronie</a></p>
+</form>
+
 </body>
 </html>

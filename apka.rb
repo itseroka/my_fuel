@@ -38,7 +38,7 @@ require_relative 'przejazd'
 class Apka < Sinatra::Base
 
   get '/' do
-   erb :form
+   erb :index
   end
   
   post '/submit' do
@@ -48,10 +48,10 @@ class Apka < Sinatra::Base
     if File.exist?(@raport_path)
       file = File.read(@raport_path)
       @item = CSV.parse(file)
-      erb :index
+      erb :csv_raport
     else
       @error_message = "Brak danych dla podanego numeru rejestracyjnego"
-      erb :form
+      erb :index
     end
   end
 
@@ -91,6 +91,10 @@ class Apka < Sinatra::Base
 
   get '/tankowanie_formularz' do
     erb :tankowanie_formularz
+  end
+
+  get '/zjazd_formularz' do
+    erb :zjazd_formularz
   end
 
 end
