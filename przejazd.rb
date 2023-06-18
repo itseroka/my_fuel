@@ -22,7 +22,7 @@ class Przejazd
         end
       end
   
-      if ostatnie_polecenie == "Norma" || !File.exists?(@raport_path)
+      if ostatnie_polecenie == "Norma" || File.exists?(@raport_path)
         CSV.open(@raport_path, "a+") do |csv|
           csv << ["Wyjazd", numer_trasy_csv, data_wyjazdu, km_wyjazd, paliwo_wyjazd]
         end
