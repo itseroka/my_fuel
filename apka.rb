@@ -75,6 +75,11 @@ class Apka < Sinatra::Base
 
     redirect '/'
   end
+  
+  get '/lista_plikow' do
+    @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
+    erb :lista_plikow
+  end
 
 end
 

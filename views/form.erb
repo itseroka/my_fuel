@@ -4,7 +4,8 @@
   <title>MyFuel</title>
 </head>
 <body>
-  <h1>Wyszukaj pojazd</h1>
+
+<h1>Wyszukaj pojazd</h1>
 
   <% if @error_message %>
     <p><%= @error_message %></p>
@@ -17,8 +18,13 @@
     <input type="submit" value="Szukaj">
   </form>
 
-    <h1>Dodaj wyjazd</h1>
+<form action="/submit" method="get">
 
+  <p><a href="/lista_plikow">Przejdź do listy plików</a></p>
+
+</form>
+
+<h1>Dodaj wyjazd</h1>
 
   <form action="/wyjazd" method="post">
     <label for="numer_pojazdu">Numer rejestracyjny:</label>
@@ -34,8 +40,8 @@
   </form>
 
 
-    <h1>Dodaj tankowanie</h1>
-    <form action="/tankowanie" method="post">
+<h1>Dodaj tankowanie</h1>
+  <form action="/tankowanie" method="post">
     <label for="numer_pojazdu">Numer rejestracyjny:</label>
     <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
     <label for="data_tankowania">Data tankowania:</label>
@@ -46,8 +52,8 @@
     <input type="submit" value="Dodaj tankowanie">
   </form>
 
-      <h1>Dodaj zjazd</h1>
-    <form action="/zjazd" method="post">
+<h1>Dodaj zjazd</h1>
+  <form action="/zjazd" method="post">
     <label for="numer_pojazdu">Numer rejestracyjny:</label>
     <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
     <label for="data_zjazdu">Data zjazdu:</label>
