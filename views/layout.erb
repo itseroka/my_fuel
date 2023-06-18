@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MyFuel</title>
+  <style>
+    body {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 200px;
+      border: 2px solid #ccc;
+      padding: 20px;
+    }
+
+    .content {
+      margin-left: 20px;
+      border: 2px solid #ccc;
+      width: calc(100% - 220px);
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+
+  <header>
+    <h1>MyFuel</h1>
+  </header>
+
+  <form action="/szukaj" method="get">
+    <p><a href="/szukaj">Szukaj danych dla pojazdu</a></p>
+  </form>
+
+  <form action="/wyjazd_formularz" method="get">
+    <p><a href="/wyjazd_formularz">Dodaj wyjazd</a></p>
+  </form>
+
+  <form action="/tankowanie_formularz" method="get">
+    <p><a href="/tankowanie_formularz">Dodaj tankowanie</a></p>
+  </form>
+
+  <form action="/zjazd_formularz" method="get">
+    <p><a href="/zjazd_formularz">Dodaj powrót na bazę</a></p>
+  </form>
+
+  <form action="/lista_plikow" method="get">
+    <p><a href="/lista_plikow">Przejdź do listy raportów</a></p>
+  </form>
+
+  <form action="/about" method="get">
+    <p><a href="/about">O stronie</a></p>
+  </form>
+</div>
+
+<div class="content">
+  <%= yield %>
+</div>
+
+</body>
+</html>

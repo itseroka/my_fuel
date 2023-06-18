@@ -38,7 +38,7 @@ require_relative 'przejazd'
 class Apka < Sinatra::Base
 
   get '/' do
-   erb :index
+   erb :index, layout: :layout
   end
   
   post '/submit' do
