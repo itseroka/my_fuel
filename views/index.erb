@@ -5,19 +5,9 @@
 </head>
 <body>
 
-<h1>Wyszukaj pojazd</h1>
-
-  <% if @error_message %>
-    <p><%= @error_message %></p>
-  <% end %>
-
-  <form action="/submit" method="post">
-    <label for="numer_pojazdu">Numer rejestracyjny:</label>
-    <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
-
-    <input type="submit" value="Szukaj">
-  </form>
-
+<form action="/szukaj" method="get">
+  <p><a href="/szukaj">Szukaj danych dla pojazdu</a></p>
+</form>
 
 <form action="/wyjazd_formularz" method="get">
   <p><a href="/wyjazd_formularz">Dodaj wyjazd</a></p>

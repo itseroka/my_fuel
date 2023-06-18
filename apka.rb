@@ -97,6 +97,10 @@ class Apka < Sinatra::Base
     erb :zjazd_formularz
   end
 
+  get '/szukaj' do
+    erb :szukaj
+  end
+
 end
 
 # 3. Tworze widok czyli katalog views a w nim plik index.erb - dodaje do get'a w apka.rb:

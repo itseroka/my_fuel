@@ -1,0 +1,12 @@
+<h1>Wyszukaj pojazd</h1>
+
+  <% if @error_message %>
+    <p><%= @error_message %></p>
+  <% end %>
+
+  <form action="/submit" method="post">
+    <label for="numer_pojazdu">Numer rejestracyjny:</label>
+    <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
+
+    <input type="submit" value="Szukaj">
+  </form>
