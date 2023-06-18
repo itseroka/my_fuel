@@ -62,7 +62,7 @@ def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
 end
 
 
-def dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
+  def dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
 
     if File.exists?(@raport_path)
         ostatnie_polecenie = nil
@@ -113,7 +113,7 @@ def dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
            end
          end
         end
-end
-
   end
+
+end
   

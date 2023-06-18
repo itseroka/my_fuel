@@ -1,7 +1,7 @@
 # 1. utworzyłem plik apka.rb, 
 # zainstalowałem gema sinatra
 # pierwszy kod:
-# rrequire 'sinatra'
+# require 'sinatra'
 # get '/' do
 #     'Hello world'
 # end
@@ -32,12 +32,13 @@
 #         'Hello world'
 #     end
 # end
+
 require_relative 'przejazd'
 
 class Apka < Sinatra::Base
 
-get '/' do
-    erb :form
+  get '/' do
+   erb :form
   end
   
   post '/submit' do
@@ -55,9 +56,7 @@ get '/' do
   end
 
   post '/wyjazd' do
-
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
-
     przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
   
     redirect '/'
@@ -67,14 +66,14 @@ get '/' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
     przejazd.dodaj_tankowanie(params[:data_tankowania], params[:paliwo_dodatkowo].to_f)
 
-       redirect '/'
+    redirect '/'
   end
 
   post '/zjazd' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
     przejazd.dodaj_powrot(params[:data_zjazdu], params[:km_powrot].to_f, params[:paliwo_zjazd].to_f)
 
-        redirect '/'
+    redirect '/'
   end
 
 end
