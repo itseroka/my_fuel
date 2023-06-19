@@ -75,6 +75,15 @@ class Apka < Sinatra::Base
 
     redirect '/'
   end
+
+  post '/cala_trasa' do
+    przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
+    przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
+    przejazd.dodaj_tankowanie(params[:data_tankowania], params[:paliwo_dodatkowo].to_f)
+    przejazd.dodaj_powrot(params[:data_zjazdu], params[:km_powrot].to_f, params[:paliwo_zjazd].to_f)
+
+    redirect '/'
+  end
   
   get '/lista_plikow' do
     @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
@@ -95,6 +104,10 @@ class Apka < Sinatra::Base
 
   get '/zjazd_formularz' do
     erb :zjazd_formularz
+  end
+
+  get '/trasa_formularz' do
+    erb :trasa_formularz
   end
 
   get '/szukaj' do
