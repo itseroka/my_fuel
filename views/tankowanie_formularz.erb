@@ -1,11 +1,25 @@
-<h1>Dodaj tankowanie</h1>
-  <form action="/tankowanie" method="post">
-    <label for="numer_pojazdu">Numer rejestracyjny:</label>
-    <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
-    <label for="data_tankowania">Data tankowania:</label>
-    <input type="text" id="data_tankowania" name="data_tankowania" required><br><br>
-    <label for="paliwo_dodatkowo">Ilość zatankowanego paliwa:</label>
-    <input type="text" id="paliwo_dodatkowo" name="paliwo_dodatkowo" required><br><br>
+<form action="/tankowanie" method="post">
+  <label for="numer_pojazdu">Numer rejestracyjny:</label>
+  <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
+  
+  <label for="data_tankowania">Data tankowania:</label>
+  <input type="text" id="data_tankowania" name="data_tankowania" required><br><br>
+  
+  <div id="paliwo_fields">
+  <label for="paliwo_dodatkowo">Ilość zatankowanego paliwa:</label>
+  <input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]" required><br><br>
+  </div>
+  
+  <input type="button" onclick="addPaliwoField()" style="font-family: Roboto Mono, monospace;" value="Dodaj kolejną wartość paliwa"><br><br>
+  
+  <input type="submit" style="font-family: Roboto Mono, monospace;" value="Dodaj tankowanie">
+</form>
 
-    <input type="submit" style="font-family: Roboto Mono, monospace;" value="Dodaj tankowanie">
-  </form>
+<script>
+  function addPaliwoField() {
+    var paliwoContainer = document.getElementById("paliwo_fields");
+    var newField = document.createElement("div");
+    newField.innerHTML = '<label for="paliwo_dodatkowo">Ilość zatankowanego paliwa: </label>' + '<input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]" required><br><br>';
+    paliwoContainer.appendChild(newField);
+  }
+</script>

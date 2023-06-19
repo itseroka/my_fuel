@@ -64,7 +64,9 @@ class Apka < Sinatra::Base
 
   post '/tankowanie' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
-    przejazd.dodaj_tankowanie(params[:data_tankowania], params[:paliwo_dodatkowo].to_f)
+    paliwo_dodatkowo = params[:paliwo_dodatkowo].map(&:to_f)
+    suma_paliwa = paliwo_dodatkowo.sum
+    przejazd.dodaj_tankowanie(params[:data_tankowania], suma_paliwa)
 
     redirect '/'
   end
@@ -78,8 +80,10 @@ class Apka < Sinatra::Base
 
   post '/cala_trasa' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
+    paliwo_dodatkowo = params[:paliwo_dodatkowo].map(&:to_f)
+    suma_paliwa = paliwo_dodatkowo.sum
     przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
-    przejazd.dodaj_tankowanie(params[:data_tankowania], params[:paliwo_dodatkowo].to_f)
+    przejazd.dodaj_tankowanie(params[:data_tankowania], suma_paliwa)
     przejazd.dodaj_powrot(params[:data_zjazdu], params[:km_powrot].to_f, params[:paliwo_zjazd].to_f)
 
     redirect '/'
