@@ -41,17 +41,18 @@ class Apka < Sinatra::Base
    erb :index, layout: :layout
   end
   
-  post '/submit' do
+  post '/szukaj' do
     numer_pojazdu = params[:numer_pojazdu].upcase
     @raport_path = "./data/#{numer_pojazdu}.csv"
   
     if File.exist?(@raport_path)
       file = File.read(@raport_path)
       @item = CSV.parse(file)
+      @numer_pojazdu = numer_pojazdu
       erb :csv_raport
     else
       @error_message = "Brak danych dla podanego numeru rejestracyjnego"
-      erb :index
+      erb :szukaj
     end
   end
 

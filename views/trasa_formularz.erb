@@ -10,10 +10,10 @@
     <label for="paliwo_wyjazd">Stan paliwa podczas wyjazdu:</label>
     <input type="text" id="paliwo_wyjazd" name="paliwo_wyjazd" required><br><br>
     <label for="data_tankowania">Data tankowania:</label>
-    <input type="text" id="data_tankowania" name="data_tankowania" required><br><br>
+    <input type="text" id="data_tankowania" name="data_tankowania"><br><br>
     <div id="paliwo_fields">
    <label for="paliwo_dodatkowo">Ilość zatankowanego paliwa:</label>
-   <input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]" required><br><br>
+   <input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]"><br><br>
     </div>
     <label for="data_zjazdu">Data zjazdu:</label>
     <input type="text" id="data_zjazdu" name="data_zjazdu" required><br><br>
@@ -22,7 +22,7 @@
     <label for="paliwo_zjazd">Stan paliwa po powrocie:</label>
     <input type="text" id="paliwo_zjazd" name="paliwo_zjazd" required><br><br>
 
-    <input type="button" onclick="addPaliwoField()" style="font-family: Roboto Mono, monospace;" value="Dodaj kolejną wartość paliwa"><br><br>
+    <input type="button" onclick="addPaliwoField()" style="font-family: Roboto Mono, monospace;" value="Dodaj tankowanie"><br><br>
 
     <input type="submit" style="font-family: Roboto Mono, monospace;" value="Dodaj trasę">
   </form>
