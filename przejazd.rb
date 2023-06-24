@@ -116,5 +116,26 @@ end
         @message = "Zjazd na bazę został dodany dla: #{@numer_pojazdu} - twoje spalanie z trasy to #{@norma_spalania}"
   end
 
+  def cala_trasa(data_wyjazdu, km_wyjazd, paliwo_wyjazd, data_tankowania, paliwo_dodatkowo, data_zjazdu, km_powrot, paliwo_zjazd)
+
+    if File.exists?(@raport_path)
+      ostatnie_polecenie = nil
+      numer_trasy_csv = nil
+      CSV.foreach(@raport_path) do |row|
+        numer_trasy_csv = row[1].to_i + 1
+        ostatnie_polecenie = row[0]
+      end
+    end
+
+    if ostatnie_polecenie == "Norma" || !File.exists?(@raport_path)
+      wyjazd(data_wyjazdu, km_wyjazd, paliwo_wyjazd)
+      dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
+      dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
+      @message = "Przejazd został dodany dla: #{@numer_pojazdu} - twoje spalanie z trasy to #{@norma_spalania}"
+    else 
+      @message = "Nie zakończono ostatniego przejazdu dla: #{@numer_pojazdu}"
+    end
+  end
+
 end
   
