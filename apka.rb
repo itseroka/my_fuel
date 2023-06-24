@@ -92,6 +92,7 @@ class Apka < Sinatra::Base
     przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
     przejazd.dodaj_tankowanie(params[:data_tankowania], suma_paliwa)
     przejazd.dodaj_powrot(params[:data_zjazdu], params[:km_powrot].to_f, params[:paliwo_zjazd].to_f)
+    response.set_cookie('message', przejazd.message)
 
     redirect '/'
   end
