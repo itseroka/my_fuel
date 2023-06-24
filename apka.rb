@@ -38,7 +38,10 @@ require_relative 'przejazd'
 class Apka < Sinatra::Base
 
   get '/' do
-   erb :index, layout: :layout
+    @message = request.cookies['message']
+    response.delete_cookie('message')
+
+    erb :index, layout: :layout
   end
   
   post '/szukaj' do
@@ -59,7 +62,8 @@ class Apka < Sinatra::Base
   post '/wyjazd' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
     przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
-  
+    response.set_cookie('message', przejazd.message)
+
     redirect '/'
   end
 
