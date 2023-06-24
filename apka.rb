@@ -72,7 +72,8 @@ class Apka < Sinatra::Base
     paliwo_dodatkowo = params[:paliwo_dodatkowo].map(&:to_f)
     suma_paliwa = paliwo_dodatkowo.sum
     przejazd.dodaj_tankowanie(params[:data_tankowania], suma_paliwa)
-
+    response.set_cookie('message', przejazd.message)
+    
     redirect '/'
   end
 

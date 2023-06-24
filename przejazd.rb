@@ -42,6 +42,8 @@ class Przejazd
 
 def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
 
+  @message = "Brak raportu lub przejazd nie został rozpoczęty - sprawdź poprawność dla: #{@numer_pojazdu}"
+  
     if File.exists?(@raport_path)
         ostatnie_polecenie = nil
         numer_trasy_csv = nil
@@ -51,15 +53,12 @@ def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
         end
      end
 
-
     if ostatnie_polecenie == "Tankowanie" || ostatnie_polecenie == "Wyjazd"
         if File.exists?(@raport_path)
           CSV.open(@raport_path, "a+") do |csv|
             csv << ["Tankowanie", numer_trasy_csv, data_tankowania, paliwo_dodatkowo]
           end
-        #   puts "Tankowanie zostało dodane dla raportu: #{@raport_path}"
-          else
-        #    puts "Brak raportu - sprawdź poprawność numeru rejestracyjnego"
+          @message = "Tankowanie zostało dodane dla pojazdu: #{@numer_pojazdu}"
         end
        end
 end
