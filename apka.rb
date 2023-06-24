@@ -80,6 +80,7 @@ class Apka < Sinatra::Base
   post '/zjazd' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
     przejazd.dodaj_powrot(params[:data_zjazdu], params[:km_powrot].to_f, params[:paliwo_zjazd].to_f)
+    response.set_cookie('message', przejazd.message)
 
     redirect '/'
   end

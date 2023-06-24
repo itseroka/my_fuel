@@ -1,7 +1,7 @@
 require 'csv'
 
 class Przejazd
-  attr_reader :message
+  attr_reader :message, :message_norma
 
   def initialize(numer_pojazdu)
     @numer_pojazdu = numer_pojazdu
@@ -66,6 +66,8 @@ end
 
   def dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
 
+    @message = "Brak raportu lub trasa nie została rozpoczęta  - sprawdź poprawność dla: #{@numer_pojazdu}"
+
     if File.exists?(@raport_path)
         ostatnie_polecenie = nil
         numer_trasy_csv = nil
@@ -80,9 +82,6 @@ end
           CSV.open(@raport_path, "a+") do |csv|
             csv << ["Powrót", numer_trasy_csv, data_zjazdu, km_powrot, paliwo_zjazd]
           end
-        #   puts "Zjazd został dodane dla raportu: #{@raport_path}"
-          else
-        #   puts "Brak raportu - sprawdź poprawność numeru rejestracyjnego"
         end
            
         stan_licznika = 0.0
@@ -103,18 +102,18 @@ end
             przejechany_dystans = row[3].to_f - stan_licznika
             stan_koncowy_paliwa = row[4].to_f
             zuzyte_paliwo = stan_poczatkowy_paliwa + ilosc_paliwa.sum - stan_koncowy_paliwa
-            norma_spalania = zuzyte_paliwo / przejechany_dystans * 100
+            @norma_spalania = zuzyte_paliwo / przejechany_dystans * 100
           end
         end
              
-        # puts "Twoje spalanie z trasy to #{norma_spalania}"
-             
          if File.exists?(@raport_path)
            CSV.open(@raport_path, "a+") do |csv|
-             csv << ["Norma", numer_trasy_csv, data_normy, norma_spalania]
+             csv << ["Norma", numer_trasy_csv, data_normy, @norma_spalania]
            end
          end
         end
+
+        @message = "Zjazd na bazę został dodany dla: #{@numer_pojazdu} - twoje spalanie z trasy to #{@norma_spalania}"
   end
 
 end
