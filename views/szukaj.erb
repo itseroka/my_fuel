@@ -14,8 +14,7 @@
 <h1>Lista dostępnych raportów</h1>
 
 <ul>
-  <% @pliki.each do |plik| %>
-    <% nazwa_pliku = File.basename(plik, File.extname(plik)) %>
-    <li><a href="/pobierz-zawartosc?plik=<%= plik %>"><%= nazwa_pliku %></a></li>
+  <% @nazwy_plikow.each do |plik, nazwa_pliku| %>
+    <li><a href="/pobierz_zawartosc?plik=<%= plik %>"><%= nazwa_pliku %></a></li>
   <% end %>
 </ul>

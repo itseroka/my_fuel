@@ -24,6 +24,28 @@ class Apka < Sinatra::Base
     end
   end
 
+  get '/szukaj' do
+    @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
+@nazwy_plikow = @pliki.map { |plik| [plik, File.basename(plik, File.extname(plik))] }
+
+  
+    erb :szukaj
+  end
+
+  get '/pobierz_zawartosc' do
+    @plik = params[:plik]
+    zawartosc = File.read(File.join('./data', @plik))
+  
+    @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
+    @nazwy_plikow = @pliki.map { |plik| [plik, File.basename(plik, File.extname(plik))] }
+  
+    @nazwa_pliku = @nazwy_plikow.to_h[@plik]
+    @item = CSV.parse(zawartosc)
+  
+    erb :zawartosc_pliku
+  end
+  
+
   post '/wyjazd' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
     przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
@@ -79,21 +101,5 @@ class Apka < Sinatra::Base
   get '/trasa_formularz' do
     erb :trasa_formularz
   end
-
-  get '/szukaj' do
-    @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
-
-    erb :szukaj
-  end
-
-  get '/pobierz-zawartosc' do
-    @plik = params[:plik]
-    zawartosc = File.read(File.join('./data', @plik))
-  
-    @item = CSV.parse(zawartosc)
-  
-    erb :zawartosc_pliku
-  end
-  
 
 end

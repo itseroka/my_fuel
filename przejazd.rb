@@ -102,7 +102,7 @@ end
             przejechany_dystans = row[3].to_f - stan_licznika
             stan_koncowy_paliwa = row[4].to_f
             zuzyte_paliwo = stan_poczatkowy_paliwa + ilosc_paliwa.sum - stan_koncowy_paliwa
-            @norma_spalania = zuzyte_paliwo / przejechany_dystans * 100
+            @norma_spalania = (zuzyte_paliwo / przejechany_dystans * 100).round(2)
           end
         end
              
