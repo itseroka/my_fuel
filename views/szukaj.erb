@@ -10,3 +10,12 @@
 
     <input type="submit" style="font-family: Roboto Mono, monospace;" value="Szukaj">
   </form>
+
+<h1>Lista dostępnych raportów</h1>
+
+<ul>
+  <% @pliki.each do |plik| %>
+    <% nazwa_pliku = File.basename(plik, File.extname(plik)) %>
+    <li><%= nazwa_pliku %></li>
+  <% end %>
+</ul>

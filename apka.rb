@@ -1,38 +1,3 @@
-# 1. utworzyłem plik apka.rb, 
-# zainstalowałem gema sinatra
-# pierwszy kod:
-# require 'sinatra'
-# get '/' do
-#     'Hello world'
-# end
-
-# Wyświetla napis, otworzenie pliku przez komendę ruby apka.rb - działa na localhost:4567
-
-# 2. Utworzyłem klasę poniżej, dodałem plik Gemfile bez rozszerzenia, zawiera:
-
-# source 'https://rubygems.org'- źródło
-
-# gem 'rack' - server
-# gem 'sinatra' - gem do api
-
-# Gemfile.lock generuje się autamatycznie po uruchomieniu 'bundle install'
-
-# Dodałem plik config.ru, kod:
-# require 'rubygems' - zaciąga gemy
-# require 'bundler' - zaciąga bundler ale w sumie nie wiem
-
-# Bundler.require - to nie wiem
-
-# require './apka' - zaciąga główny plik
-
-# run Apka - uruchamia klasę z pliku apka.rb
-
-# class Apka < Sinatra::Base
-#     get '/' do
-#         'Hello world'
-#     end
-# end
-
 require_relative 'przejazd'
 
 class Apka < Sinatra::Base
@@ -94,11 +59,6 @@ class Apka < Sinatra::Base
 
     redirect '/'
   end
-  
-  get '/lista_plikow' do
-    @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
-    erb :lista_plikow
-  end
 
   get '/about' do
     erb :about
@@ -121,11 +81,8 @@ class Apka < Sinatra::Base
   end
 
   get '/szukaj' do
+    @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
     erb :szukaj
   end
 
 end
-
-# 3. Tworze widok czyli katalog views a w nim plik index.erb - dodaje do get'a w apka.rb:
-#     erb :index
-# żeby go wczytać
