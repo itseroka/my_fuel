@@ -82,7 +82,18 @@ class Apka < Sinatra::Base
 
   get '/szukaj' do
     @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
+
     erb :szukaj
   end
+
+  get '/pobierz-zawartosc' do
+    @plik = params[:plik]
+    zawartosc = File.read(File.join('./data', @plik))
+  
+    @item = CSV.parse(zawartosc)
+  
+    erb :zawartosc_pliku
+  end
+  
 
 end

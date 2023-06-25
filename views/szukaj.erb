@@ -16,6 +16,6 @@
 <ul>
   <% @pliki.each do |plik| %>
     <% nazwa_pliku = File.basename(plik, File.extname(plik)) %>
-    <li><%= nazwa_pliku %></li>
+    <li><a href="/pobierz-zawartosc?plik=<%= plik %>"><%= nazwa_pliku %></a></li>
   <% end %>
 </ul>
