@@ -17,7 +17,7 @@ class Apka < Sinatra::Base
       file = File.read(@raport_path)
       @item = CSV.parse(file)
       @numer_pojazdu = numer_pojazdu
-      erb :csv_raport
+      erb :zawartosc_pliku
     else
       @error_message = "Brak danych dla podanego numeru rejestracyjnego"
       erb :szukaj
@@ -26,9 +26,8 @@ class Apka < Sinatra::Base
 
   get '/szukaj' do
     @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
-@nazwy_plikow = @pliki.map { |plik| [plik, File.basename(plik, File.extname(plik))] }
+    @nazwy_plikow = @pliki.map { |plik| [plik, File.basename(plik, File.extname(plik))] }
 
-  
     erb :szukaj
   end
 

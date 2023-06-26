@@ -27,7 +27,7 @@ class Przejazd
   
       if ostatnie_polecenie == "Norma"
         CSV.open(@raport_path, "a+") do |csv|
-          csv << ["Wyjazd", numer_trasy_csv, data_wyjazdu, km_wyjazd, paliwo_wyjazd, ostatnie_polecenie]
+          csv << ["Wyjazd", numer_trasy_csv, data_wyjazdu, km_wyjazd, paliwo_wyjazd]
         end
         @message = "Wyjazd został zarejestrowany dla: #{@numer_pojazdu}"
       elsif ostatnie_polecenie == "Wyjazd" || ostatnie_polecenie == "Tankowanie" 

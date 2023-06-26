@@ -1,9 +1,30 @@
+<style>
+  table {
+    border-collapse: collapse;
+    width: 50%;
+  }
+
+  th,
+  td {
+    border: 1px solid black;
+    padding: 4px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .five-cols {
+    column-count: 5;
+  }
+</style>
+
 <h1>Dane z raportu <%= @nazwa_pliku %></h1>
 
 <table>
   <tbody>
     <% @item.each do |row| %>
-      <tr>
+      <tr class="five-cols">
         <% row.each do |cell| %>
           <td><%= cell %></td>
         <% end %>
