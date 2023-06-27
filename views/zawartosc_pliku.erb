@@ -33,6 +33,15 @@
   </tbody>
 </table>
 
- <form action="/szukaj" method="get">
-    <p><a href="/szukaj">Powrót</a></p>
-  </form>
+<br>
+
+<form action="/usun_ostatni_wiersz" method="post">
+  <input type="hidden" name="plik" value="<%= @plik %>">
+  <button type="submit" style="font-family: Roboto Mono, monospace;">Usuń ostatni wiersz</button>
+</form>
+
+<br>
+
+<form action="/szukaj" method="get">
+  <button type="submit" style="font-family: Roboto Mono, monospace;">Powrót</button>
+</form>

@@ -99,5 +99,23 @@ class Apka < Sinatra::Base
   get '/trasa_formularz' do
     erb :trasa_formularz
   end
+
+  post '/usun_ostatni_wiersz' do
+    @plik = params[:plik]
+    file_path = File.join('./data', @plik)
+    rows = CSV.read(file_path)
+    
+    if rows.any?
+      rows.pop
+      CSV.open(file_path, 'w') do |csv|
+        rows.each do |row|
+          csv << row
+        end
+      end
+    end
+  
+    redirect "/pobierz_zawartosc?plik=#{@plik}"
+  end
+  
   
 end

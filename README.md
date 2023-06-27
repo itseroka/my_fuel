@@ -19,8 +19,6 @@ Ta metoda obsługuje żądanie typu GET na głównym adresie URL. Po wykonaniu �
 Metoda post '/szukaj':
 Ta metoda obsługuje żądanie typu POST na adresie URL "/szukaj". Po wykonaniu żądania, metoda odczytuje wartość parametru numer_pojazdu z żądania i przekształca ją na wielkie litery za pomocą metody upcase. Następnie tworzy ścieżkę do pliku raportu na podstawie numeru pojazdu i przypisuje ją do zmiennej @raport_path. Jeśli plik raportu istnieje, metoda odczytuje jego zawartość, parsuje go jako plik CSV i przypisuje wynik do zmiennej @item. Dodatkowo przypisuje wartość numeru pojazdu do zmiennej @numer_pojazdu. Następnie renderuje widok zawartosc_pliku.erb. Jeśli plik raportu nie istnieje, ustawia zmienną @error_message na wartość informującą o braku danych dla podanego numeru rejestracyjnego i renderuje widok szukaj.erb.
 
-Użyty język programowania to Ruby, a kod opiera się na frameworku Sinatra, który służy do tworzenia aplikacji internetowych w języku Ruby.
-  
 Metoda get '/szukaj':
 Ta metoda obsługuje żądanie typu GET na adresie URL "/szukaj". Po wykonaniu żądania, metoda pobiera listę plików w katalogu "./data" za pomocą metody Dir.entries. Następnie odrzuca pliki będące katalogami i przypisuje pozostałe pliki do zmiennej instancyjnej @pliki. Następnie tworzy tablicę @nazwy_plikow, w której dla każdego pliku tworzy parę wartości [plik, nazwa_pliku], gdzie plik to nazwa pliku z rozszerzeniem, a nazwa_pliku to nazwa pliku bez rozszerzenia. Renderuje widok szukaj.erb, przekazując zmienne @pliki i @nazwy_plikow do widoku.
 
@@ -44,8 +42,6 @@ Ta klasa służy do reprezentowania informacji o przejazdach. Posiada jedno atry
 
 Metoda attr_reader :message:
 Ta metoda generuje automatyczny getter dla atrybutu message, co umożliwia odczytywanie wartości tego atrybutu z zewnątrz obiektu klasy Przejazd. Nie ma możliwości bezpośredniej modyfikacji tego atrybutu z zewnątrz, ponieważ nie został zdefiniowany setter.
-
-Użyty język programowania to Ruby, a kod reprezentuje definicję klasy Przejazd oraz generowanie gettera dla atrybutu message przy użyciu metody attr_reader.
 
 Metoda initialize:
 Ta metoda jest konstruktorem dla klasy Przejazd i przyjmuje parametr numer_pojazdu. Inicjalizuje atrybuty @numer_pojazdu i @raport_path przyjmując wartość parametru numer_pojazdu oraz tworząc ścieżkę do pliku raportu na podstawie tego numeru. Następnie, jeśli plik raportu istnieje, odczytuje jego zawartość i przypisuje wartości odpowiednich zmiennych, takie jak numer_trasy_csv i ostatnie_polecenie, na podstawie danych w pliku CSV.
