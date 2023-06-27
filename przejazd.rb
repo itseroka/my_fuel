@@ -1,7 +1,7 @@
 require 'csv'
 
 class Przejazd
-  attr_reader :message, :message_norma
+  attr_reader :message
 
   def initialize(numer_pojazdu)
     @numer_pojazdu = numer_pojazdu
