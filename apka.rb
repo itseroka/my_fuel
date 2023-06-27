@@ -99,11 +99,5 @@ class Apka < Sinatra::Base
   get '/trasa_formularz' do
     erb :trasa_formularz
   end
-
-  post '/delete_row' do
-    row_index = params[:row_index].to_i
-    @item.delete_at(row_index)
-    redirect back
-  end
   
 end
