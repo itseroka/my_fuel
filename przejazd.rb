@@ -38,6 +38,7 @@ class Przejazd
         end
         @message = "Zarejestrowano pierwszy wyjazd dla: #{@numer_pojazdu}"
       end
+      return @message
     end
 
 def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
@@ -61,6 +62,7 @@ def dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
           @message = "Tankowanie zostało dodane dla pojazdu: #{@numer_pojazdu}"
         end
        end
+  return @message
 end
 
 
@@ -114,6 +116,7 @@ end
         end
 
         @message = "Zjazd na bazę został dodany dla: #{@numer_pojazdu} - twoje spalanie z trasy to #{@norma_spalania}"
+        return @message
   end
 
   def cala_trasa(data_wyjazdu, km_wyjazd, paliwo_wyjazd, data_tankowania, paliwo_dodatkowo, data_zjazdu, km_powrot, paliwo_zjazd)
@@ -135,6 +138,7 @@ end
     else 
       @message = "Nie zakończono ostatniego przejazdu dla: #{@numer_pojazdu}"
     end
+    return @message
   end
 
 end

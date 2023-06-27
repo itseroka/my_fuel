@@ -44,7 +44,6 @@ class Apka < Sinatra::Base
     erb :zawartosc_pliku
   end
   
-
   post '/wyjazd' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
     przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
@@ -107,5 +106,4 @@ class Apka < Sinatra::Base
     redirect back
   end
   
-
 end
