@@ -116,6 +116,17 @@ class Apka < Sinatra::Base
   
     redirect "/pobierz_zawartosc?plik=#{@plik}"
   end
+
+  post '/usun_raport' do
+    @plik = params[:plik]
+    file_path = File.join('./data', @plik)
+    
+    if File.exist?(file_path)
+      File.delete(file_path)
+    end
+    
+    redirect '/szukaj'
+  end
   
-  
+
 end

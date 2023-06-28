@@ -42,6 +42,14 @@
 
 <br>
 
+<form action="/usun_raport" method="post">
+  <input type="hidden" name="plik" value="<%= @plik %>">
+  <button type="submit" style="font-family: Roboto Mono, monospace;">Usuń raport</button>
+</form>
+
+<br>
+
 <form action="/szukaj" method="get">
   <button type="submit" style="font-family: Roboto Mono, monospace;">Powrót</button>
 </form>
+
