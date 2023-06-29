@@ -1,0 +1,40 @@
+<style>
+  table {
+    border-collapse: collapse;
+    width: 50%;
+  }
+
+  th,
+  td {
+    border: 1px solid black;
+    padding: 4px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .five-cols {
+    column-count: 5;
+  }
+</style>
+
+<h1>Dane z raportu <%= @plik %></h1>
+
+
+<table>
+  <tbody>
+    <% @normy.each do |row| %>
+      <tr class="five-cols">
+        <% row.each do |cell| %>
+          <td><%= cell %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<form action="/szukaj" method="get">
+  <button type="submit" style="font-family: Roboto Mono, monospace;">Powrót</button>
+</form>

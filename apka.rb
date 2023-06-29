@@ -43,6 +43,23 @@ class Apka < Sinatra::Base
   
     erb :zawartosc_pliku
   end
+
+  get '/wyswietl_normy' do
+    @plik = params[:plik]
+    @raport_path = "./data/#{@plik}"
+
+    @normy = []
+
+    if File.exists?(@raport_path)
+      CSV.foreach(@raport_path) do |row|
+        if row[0] == "Norma"
+          @normy << row
+        end
+      end
+    end
+
+    erb :wyswietl_normy
+  end
   
   post '/usun_ostatni_wiersz' do
     @plik = params[:plik]
@@ -71,7 +88,7 @@ class Apka < Sinatra::Base
     
     redirect '/szukaj'
   end
-  
+
   post '/potwierdzenie_usuniecia' do
     @plik = params[:plik]
   
