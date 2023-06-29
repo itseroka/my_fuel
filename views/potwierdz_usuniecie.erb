@@ -1,0 +1,14 @@
+<h1>Potwierdzenie usunięcia raportu <%= @plik %></h1>
+
+<p>Czy na pewno chcesz usunąć raport? Ta operacja jest nieodwracalna.</p>
+
+<div style="display: flex; gap: 10px;">
+  <form action="/usun_raport" method="post">
+    <input type="hidden" name="plik" value="<%= @plik %>">
+    <button type="submit" style="font-family: Roboto Mono, monospace;">Tak</button>
+  </form>
+
+  <form action="/szukaj" method="get">
+    <button type="submit" style="font-family: Roboto Mono, monospace;">Nie</button>
+  </form>
+</div>

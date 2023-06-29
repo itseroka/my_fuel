@@ -44,6 +44,40 @@ class Apka < Sinatra::Base
     erb :zawartosc_pliku
   end
   
+  post '/usun_ostatni_wiersz' do
+    @plik = params[:plik]
+    file_path = File.join('./data', @plik)
+    rows = CSV.read(file_path)
+    
+    if rows.any?
+      rows.pop
+      CSV.open(file_path, 'w') do |csv|
+        rows.each do |row|
+          csv << row
+        end
+      end
+    end
+  
+    redirect "/pobierz_zawartosc?plik=#{@plik}"
+  end
+
+  post '/usun_raport' do
+    @plik = params[:plik]
+    file_path = File.join('./data', @plik)
+    
+    if File.exist?(file_path)
+      File.delete(file_path)
+    end
+    
+    redirect '/szukaj'
+  end
+  
+  post '/potwierdzenie_usuniecia' do
+    @plik = params[:plik]
+  
+    erb :potwierdz_usuniecie
+  end
+
   post '/wyjazd' do
     przejazd = Przejazd.new(params[:numer_pojazdu].upcase)
     przejazd.wyjazd(params[:data_wyjazdu], params[:km_wyjazd].to_f, params[:paliwo_wyjazd].to_f)
@@ -99,34 +133,5 @@ class Apka < Sinatra::Base
   get '/trasa_formularz' do
     erb :trasa_formularz
   end
-
-  post '/usun_ostatni_wiersz' do
-    @plik = params[:plik]
-    file_path = File.join('./data', @plik)
-    rows = CSV.read(file_path)
-    
-    if rows.any?
-      rows.pop
-      CSV.open(file_path, 'w') do |csv|
-        rows.each do |row|
-          csv << row
-        end
-      end
-    end
   
-    redirect "/pobierz_zawartosc?plik=#{@plik}"
-  end
-
-  post '/usun_raport' do
-    @plik = params[:plik]
-    file_path = File.join('./data', @plik)
-    
-    if File.exist?(file_path)
-      File.delete(file_path)
-    end
-    
-    redirect '/szukaj'
-  end
-  
-
 end
