@@ -1,37 +1,68 @@
 <h1>Dodaj całą trasę</h1>
 
-  <form action="/cala_trasa" method="post">
-    <label for="numer_pojazdu">Numer rejestracyjny:</label>
-    <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
-    <label for="data_wyjazdu">Data wyjazdu:</label>
-    <input type="text" id="data_wyjazdu" name="data_wyjazdu" required><br><br>
-    <label for="km_wyjazd">Stan licznika:</label>
-    <input type="text" id="km_wyjazd" name="km_wyjazd" required><br><br>
-    <label for="paliwo_wyjazd">Stan paliwa podczas wyjazdu:</label>
-    <input type="text" id="paliwo_wyjazd" name="paliwo_wyjazd" required><br><br>
-    <label for="data_tankowania">Data tankowania:</label>
-    <input type="text" id="data_tankowania" name="data_tankowania"><br><br>
-    <div id="paliwo_fields">
-   <label for="paliwo_dodatkowo">Ilość zatankowanego paliwa:</label>
-   <input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]"><br><br>
+<form action="/cala_trasa" method="post">
+  <label for="numer_pojazdu">Numer rejestracyjny:</label>
+  <input type="text" id="numer_pojazdu" name="numer_pojazdu" required><br><br>
+  <label for="data_wyjazdu">Data wyjazdu:</label>
+  <input type="text" id="data_wyjazdu" name="data_wyjazdu" required><br><br>
+  <label for="km_wyjazd">Stan licznika:</label>
+  <input type="text" id="km_wyjazd" name="km_wyjazd" required><br><br>
+  <label for="paliwo_wyjazd">Stan paliwa podczas wyjazdu:</label>
+  <input type="text" id="paliwo_wyjazd" name="paliwo_wyjazd" required><br><br>
+
+  <div id="tankowania">
+    <div class="tankowanie">
     </div>
-    <label for="data_zjazdu">Data zjazdu:</label>
-    <input type="text" id="data_zjazdu" name="data_zjazdu" required><br><br>
-    <label for="km_powrot">Stan licznika:</label>
-    <input type="text" id="km_powrot" name="km_powrot" required><br><br>
-    <label for="paliwo_zjazd">Stan paliwa po powrocie:</label>
-    <input type="text" id="paliwo_zjazd" name="paliwo_zjazd" required><br><br>
+  </div>
 
-    <input type="button" onclick="addPaliwoField()" style="font-family: Roboto Mono, monospace;" value="Dodaj tankowanie"><br><br>
+  <label for="data_zjazdu">Data zjazdu:</label>
+  <input type="text" id="data_zjazdu" name="data_zjazdu" required><br><br>
+  <label for="km_powrot">Stan licznika:</label>
+  <input type="text" id="km_powrot" name="km_powrot" required><br><br>
+  <label for="paliwo_zjazd">Stan paliwa po powrocie:</label>
+  <input type="text" id="paliwo_zjazd" name="paliwo_zjazd" required><br><br>
 
-    <input type="submit" style="font-family: Roboto Mono, monospace;" value="Dodaj trasę">
-  </form>
+  <button type="button" style="font-family: Roboto Mono, monospace;" id="add-tankowanie">Dodaj tankowanie</button><br><br>
+
+  <input type="submit" style="font-family: Roboto Mono, monospace;" value="Dodaj trasę">
+</form>
 
 <script>
-  function addPaliwoField() {
-    var paliwoContainer = document.getElementById("paliwo_fields");
-    var newField = document.createElement("div");
-    newField.innerHTML = '<label for="paliwo_dodatkowo">Ilość zatankowanego paliwa: </label>' + '<input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]" required><br><br>';
-    paliwoContainer.appendChild(newField);
-  }
+  document.addEventListener("DOMContentLoaded", function() {
+    const tankowaniaContainer = document.getElementById("tankowania");
+    const addTankowanieButton = document.getElementById("add-tankowanie");
+    let tankowanieIndex = 1;
+
+    addTankowanieButton.addEventListener("click", function() {
+      const tankowanieDiv = document.createElement("div");
+      tankowanieDiv.classList.add("tankowanie");
+
+      const dataTankowaniaLabel = document.createElement("label");
+      dataTankowaniaLabel.textContent = "Data tankowania: ";
+      const dataTankowaniaInput = document.createElement("input");
+      dataTankowaniaInput.type = "text";
+      dataTankowaniaInput.name = "data_tankowania[]";
+      dataTankowaniaInput.required = true;
+
+      const paliwoDodatkowoLabel = document.createElement("label");
+      paliwoDodatkowoLabel.textContent = "Ilość zatankowanego paliwa: ";
+      const paliwoDodatkowoInput = document.createElement("input");
+      paliwoDodatkowoInput.type = "number";
+      paliwoDodatkowoInput.step = "0.01";
+      paliwoDodatkowoInput.name = "paliwo_dodatkowo[]";
+      paliwoDodatkowoInput.required = true;
+
+      tankowanieDiv.appendChild(dataTankowaniaLabel);
+      tankowanieDiv.appendChild(dataTankowaniaInput);
+      tankowanieDiv.appendChild(document.createElement("br"));
+      tankowanieDiv.appendChild(document.createElement("br"));
+      tankowanieDiv.appendChild(paliwoDodatkowoLabel);
+      tankowanieDiv.appendChild(paliwoDodatkowoInput);
+      tankowanieDiv.appendChild(document.createElement("br"));
+      tankowanieDiv.appendChild(document.createElement("br"));
+      tankowaniaContainer.appendChild(tankowanieDiv);
+
+      tankowanieIndex++;
+    });
+  });
 </script>

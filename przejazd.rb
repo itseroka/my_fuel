@@ -120,7 +120,6 @@ end
   end
 
   def cala_trasa(data_wyjazdu, km_wyjazd, paliwo_wyjazd, data_tankowania, paliwo_dodatkowo, data_zjazdu, km_powrot, paliwo_zjazd)
-
     if File.exists?(@raport_path)
       ostatnie_polecenie = nil
       numer_trasy_csv = nil
@@ -129,16 +128,26 @@ end
         ostatnie_polecenie = row[0]
       end
     end
-
+  
     if ostatnie_polecenie == "Norma" || !File.exists?(@raport_path)
       wyjazd(data_wyjazdu, km_wyjazd, paliwo_wyjazd)
-      dodaj_tankowanie(data_tankowania, paliwo_dodatkowo)
+  
+      if data_tankowania && !data_tankowania.empty?
+        data_tankowania.each_with_index do |data, index|
+          if !data.empty? && !paliwo_dodatkowo[index].empty?
+            dodaj_tankowanie(data, paliwo_dodatkowo[index])
+          end
+        end
+      end
+      
       dodaj_powrot(data_zjazdu, km_powrot, paliwo_zjazd)
+  
       @message = "Przejazd został dodany dla: #{@numer_pojazdu} - twoje spalanie z trasy to #{@norma_spalania}"
     else 
       @message = "Nie zakończono ostatniego przejazdu dla: #{@numer_pojazdu}"
     end
+  
     return @message
   end
-
+  
 end
