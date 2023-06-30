@@ -7,21 +7,8 @@
   <label for="data_tankowania">Data tankowania:</label>
   <input type="text" id="data_tankowania" name="data_tankowania" required><br><br>
   
-  <div id="paliwo_fields">
   <label for="paliwo_dodatkowo">Ilość zatankowanego paliwa:</label>
-  <input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]" required><br><br>
-  </div>
-  
-  <input type="button" onclick="addPaliwoField()" style="font-family: Roboto Mono, monospace;" value="Dodaj kolejną wartość paliwa"><br><br>
+  <input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo" required><br><br>
   
   <input type="submit" style="font-family: Roboto Mono, monospace;" value="Dodaj tankowanie">
 </form>
-
-<script>
-  function addPaliwoField() {
-    var paliwoContainer = document.getElementById("paliwo_fields");
-    var newField = document.createElement("div");
-    newField.innerHTML = '<label for="paliwo_dodatkowo">Ilość zatankowanego paliwa: </label>' + '<input type="number" step="0.01" id="paliwo_dodatkowo" name="paliwo_dodatkowo[]" required><br><br>';
-    paliwoContainer.appendChild(newField);
-  }
-</script>
