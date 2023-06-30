@@ -50,6 +50,8 @@ class Apka < Sinatra::Base
 
     @normy = []
 
+    @nazwa_raportu = File.basename(@plik, ".*")
+
     if File.exists?(@raport_path)
       CSV.foreach(@raport_path) do |row|
         if row[0] == "Norma"
@@ -91,7 +93,7 @@ class Apka < Sinatra::Base
 
   post '/potwierdzenie_usuniecia' do
     @plik = params[:plik]
-  
+    @nazwa_raportu = File.basename(@plik, ".*")
     erb :potwierdz_usuniecie
   end
 
