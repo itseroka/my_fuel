@@ -12,7 +12,7 @@ class Apka < Sinatra::Base
   post '/szukaj' do
     numer_pojazdu = params[:numer_pojazdu].upcase
     @raport_path = "./data/#{numer_pojazdu}.csv"
-    
+
     @pliki = Dir.entries('./data').reject { |file| File.directory?(file) }
     @nazwy_plikow = @pliki.map { |plik| [plik, File.basename(plik, File.extname(plik))] }
   
